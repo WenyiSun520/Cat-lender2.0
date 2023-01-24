@@ -1,8 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { AddPetForm } from "./AddPetForm";
+// import { AddPetForm } from "./AddPetForm";
+import {useNavigate} from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faSquarePlus
+} from "@fortawesome/free-regular-svg-icons";
+
 
 export const PetProfileList = () => {
+  const navigate = useNavigate();
   const profiles = useSelector((state) => state.petsProfile);
   const renderedProfiles = profiles.map((pet) => (
     <div className="petProfile" key={pet.id}>
@@ -16,11 +23,23 @@ export const PetProfileList = () => {
     </div>
   ));
 
+  const handleOpenAddPetForm =()=>{
+       navigate("./addPetForm");
+  }
+
   return (
     <section className="petProfilePage">
       <h2>Your Pets</h2>
-      <div className="petProfileList">{renderedProfiles}</div>
-      <AddPetForm />
+      <div className="petProfileList">
+        {renderedProfiles}
+        <div className="events add-profile" onClick={handleOpenAddPetForm}>
+          <FontAwesomeIcon
+            className="icon"
+            onClick={handleOpenAddPetForm}
+            icon={faSquarePlus}
+          />
+        </div>
+      </div>
     </section>
   );
 };

@@ -71,6 +71,7 @@ export const AddPetForm = () => {
           onClick={renderBreedsList}
           onChange={onBreedChanged}
         >
+          <option value="">Choose A Breed</option>
           {breedlist}
         </select>
 

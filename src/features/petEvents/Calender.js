@@ -85,7 +85,7 @@ export default function Calender() {
       <div className="calender-container">
         <div className="month">
           <FontAwesomeIcon
-            className="prev"
+            className="prev icon"
             onClick={prevCalender}
             icon={faArrowAltCircleLeft}
           />
@@ -94,7 +94,7 @@ export default function Calender() {
             <p>{curDate.toDateString()}</p>
           </div>
           <FontAwesomeIcon
-            className="next"
+            className="next icon"
             onClick={nextCalender}
             icon={faArrowAltCircleRight}
           />

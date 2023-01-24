@@ -4,6 +4,7 @@ import { Navbar } from "./app/Navbar";
 import { PetProfileList } from "./features/petProfile/PetProfileList";
 import Calender from './features/petEvents/Calender';
 import {AddEventForm } from './features/petEvents/addEventForm'
+import {AddPetForm} from './features/petProfile/AddPetForm'
 import ErrorPage from './app/errPage'
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/" element={<PetProfileList />}></Route>
         <Route path="/calender" element={<Calender />}></Route>
         <Route path="/addEventForm" element={<AddEventForm />}></Route>
+        <Route path="/addPetForm" element={<AddPetForm />}></Route>
 
         <Route path="*" element={<ErrorPage />}></Route>
       </Routes>
