@@ -38,17 +38,17 @@ const petProfileSlice = createSlice({
         };
       },
     },
+  petProfileUpdated(state, action) {
+    const { id,name, bday, sex, breed } = action.payload;
+    const updatedProfile = state.find(profile =>profile.id ===id);
+    if(updatedProfile){
+      updatedProfile.name = name;
+      updatedProfile.bday = bday;
+      updatedProfile.sex = sex;
+      updatedProfile.breed = breed;
+    }
   },
-  // petProfileUpdated(state, action) {
-  //   const { id,name, bday, sex, breed } = action.payload;
-  //   const updatedProfile = state.find(profile =>profile.id ===id);
-  //   if(updatedProfile){
-  //     updatedProfile.name = name;
-  //     updatedProfile.bday = bday;
-  //     updatedProfile.sex = sex;
-  //     updatedProfile.breed = breed;
-  //   }
-  // },
+}
 });
-export const { petProfileAdded } = petProfileSlice.actions;
+export const { petProfileAdded, petProfileUpdated } = petProfileSlice.actions;
 export default petProfileSlice.reducer;

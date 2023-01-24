@@ -28,11 +28,11 @@ const petEventsSlice = createSlice({
         state.push(action.payload);
       },
       //prepare callback function to generate random value
-      prepare(pets, title, date, start_time, description) {
+      prepare(petName, title, date, start_time, description) {
         return {
           payload: {
             id: nanoid(),
-            pets,
+            petName,
             title,
             date,
             start_time,

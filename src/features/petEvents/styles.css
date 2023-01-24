@@ -30,6 +30,7 @@
     justify-content: space-evenly;
     align-items: baseline;
     background-color: #f7c873;
+    border-radius: 10px;
 }
 
 .calender-page .month .prev:hover, .calender-page .month .next:hover {

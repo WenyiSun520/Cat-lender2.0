@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 import { breedsList } from "../../data/breed";
-import { useDispatch } from "react-redux";
-import {useNavigate} from 'react-router-dom';
-import { petProfileAdded } from "./petProfileSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { petProfileUpdated } from "./petProfileSlice";
 
-export const AddPetForm = () => {
+export const EditPetForm = () => {
+  const urlParams = useParams();
+  let profileId = urlParams.profileId;
+  const singleProfile = useSelector((state) =>
+    state.petsProfile.find((profile) => profile.id === profileId)
+  );
   const [breedlist, setBreedlist] = useState([]);
-  const [petname, setPetname] = useState("");
-  const [bday, setBday] = useState("");
-  const [sex, setSex] = useState("");
-  const [breed, setBreed] = useState("Domestic Shorthair");
+  const [petname, setPetname] = useState(singleProfile.name);
+  const [bday, setBday] = useState(singleProfile.bday);
+  const [sex, setSex] = useState(singleProfile.sex);
+  const [breed, setBreed] = useState(singleProfile.breed);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -26,27 +31,22 @@ export const AddPetForm = () => {
   const onBdayChanged = (e) => setBday(e.target.value);
   const onBreedChanged = (e) => setBreed(e.target.value);
   const onSexChanged = (e) => setSex(e.target.value);
-  const onSavePetProfileClicked = () => {
-    if (petname && bday && sex && breed) {
-      // console.log("im in onSavePetProileClicked")
-        dispatch(petProfileAdded(petname,bday,sex,breed));
-        setPetname('');
-        setBday('');
-        setBreed('');
-        setSex('')
-    }
-     navigate("/");
+  const onUpdatePetProfileClicked = () => {
+    // console.log("im in onSavePetProileClicked")
+    dispatch(petProfileUpdated({ id: profileId, name:petname, bday, sex, breed }));
+    navigate(`/profiles/${profileId}`);
   };
 
   return (
     <section className="addpet-section">
-      <h2>Add your pets profile</h2>
-      <form className="addPetForm">
+      <h2>Edit your pets profile</h2>
+      <form className="editPetForm">
         <label htmlFor="petname">Name:</label>
         <input
           type="text"
           id="petname"
           name="petname"
+          placeholder={petname}
           value={petname}
           onChange={onPetnameChanged}
         />
@@ -55,6 +55,7 @@ export const AddPetForm = () => {
           type="date"
           id="bday"
           name="bday"
+          placeholder={bday}
           value={bday}
           onChange={onBdayChanged}
         />
@@ -71,6 +72,7 @@ export const AddPetForm = () => {
           name="breeds"
           id="breeds"
           value={breed}
+          placeholder={breed}
           onClick={renderBreedsList}
           onChange={onBreedChanged}
         >
@@ -78,8 +80,8 @@ export const AddPetForm = () => {
           {breedlist}
         </select>
 
-        <button type="button" onClick={onSavePetProfileClicked}>
-          Save Post
+        <button type="button" onClick={onUpdatePetProfileClicked}>
+          Update Post
         </button>
       </form>
     </section>

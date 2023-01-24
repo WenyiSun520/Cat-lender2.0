@@ -16,15 +16,15 @@ This project is delicated to assist pets owner manage their furry friends' healt
 
 ### Work need to be done:
 
-- SingleProfle with the pet's events showing below
+- ~~SingleProfle with the pet's events showing below~~(01.24.2023)
 - Add notification to each days that has events
-- Beautify prtsprofile section and events section
+- ~~Beautify prtsprofile section and events section~~(01.24.2023)
 - allow user to edit pets profile and events
 - allow user to delete pets profile and events
 - weight tracker
 ### 01.24.2023
-- use getTime() to compare two date is not wise, there may has some millsecond difference and the results obtained by gettime() would be different.
-- 2013-01-23 also has a different getTime() result comparing from 2013-1-23
+- use getTime() to compare two date is not wise, there may has some millsecond difference even though their year, month, date are same, and so the results obtained by gettime() would be different.
+
 ### 01.23.2023
  
 - Add calender tab and add event entries

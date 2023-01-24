@@ -9,7 +9,7 @@ export const AddEventForm = () => {
   const navigate = useNavigate();
   const petsProfiles = useSelector((state) => state.petsProfile);
   const petsOptions = petsProfiles.map((pet) => (
-    <option key={pet.id} value={pet.name}>
+    <option id={pet.id} key={pet.id} value={pet.name}>
       {pet.name}
     </option>
   ));
@@ -26,10 +26,6 @@ export const AddEventForm = () => {
       note: "",
     },
     onSubmit: (values) => {
-      // alert(JSON.stringify(values, null, 2));
-      // const [pets, title, date, start_time, description] = values;
-      // console.log(values.date)
-      
       dispatch(petEventAdded(values.pet, values.title, values.date, values.start_time, values.note));
       navigate("/calender");
     },

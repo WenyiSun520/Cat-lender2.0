@@ -1,11 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
 // import { AddPetForm } from "./AddPetForm";
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, Link} from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSquarePlus
 } from "@fortawesome/free-regular-svg-icons";
+import AgeCalculation from '../../util/AgeCalculater'
 
 
 export const PetProfileList = () => {
@@ -13,12 +14,13 @@ export const PetProfileList = () => {
   const profiles = useSelector((state) => state.petsProfile);
   const renderedProfiles = profiles.map((pet) => (
     <div className="petProfile" key={pet.id}>
-      <img className="img-profile" src="./img/cat.jpeg"></img>
+      <img className="img-profile" src="./img/cat.jpeg" alt="sample profile" />
       <ul>
         <li>Name:{pet.name}</li>
-        <li>Age: {ageCalculation(pet.bday)}</li>
+        <li>Age: {AgeCalculation(pet.bday)}</li>
         <li>Sex:{pet.sex}</li>
         <li>Breed:{pet.breed}</li>
+        <Link to={`/profiles/${pet.id}`}>View Profile</Link>
       </ul>
     </div>
   ));
@@ -43,19 +45,3 @@ export const PetProfileList = () => {
     </section>
   );
 };
-
-function ageCalculation(bday) {
-  let birthday = new Date(bday);
-  let month = bday.substring(5, 7);
-  // let day = bday.substring(8, 10);
-
-   let ageInmillSec= Date.now()-birthday.getTime();
-   let agesDf = new Date(ageInmillSec);
-   let years = agesDf.getFullYear();
-   let agesInYear = Math.abs(years - 1970);
-   let agesInMonth = 12 - month + agesDf.getMonth();
-   //let agesInDays = 
-   
-   return agesInYear+ " years old, "+agesInMonth+" months old";
-  
-}
