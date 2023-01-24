@@ -24,21 +24,11 @@ const Month = [
 ];
 const curDate = new Date();
 export default function Calender() {
-  let initialDate;
-  if (curDate.getMonth() + 1 >= 10) {
-    initialDate =
-      curDate.getFullYear() +
-      "-" +
-      (curDate.getMonth() + 1) +
-      "-" +
-      curDate.getDate();
-  } else {
-    initialDate = curDate.getFullYear() +
-      "-0" +
-      (curDate.getMonth() + 1) +
-      "-" +
-      curDate.getDate();
-  };
+  let initialDate = adjustDateSyntax(
+    curDate.getFullYear(),
+    curDate.getMonth() + 1,
+    curDate.getDate()
+  );
   const [days, setDays] = useState(DisplayCalender());
   const [renderedDate, setrenderedDate] = useState(initialDate);
   // console.log("renderedDate is: " + renderedDate);
@@ -52,13 +42,7 @@ export default function Calender() {
   };
 
   let displayDays = days.map((obj) => {
-    let date;
-    if (obj.month < 10) {
-      //adjust date syntax
-      date = obj.year + "-0" + obj.month + "-" + obj.day;
-    } else {
-      date = obj.year + "-" + obj.month + "-" + obj.day;
-    }
+    let date = adjustDateSyntax(obj.year, obj.month, obj.day);
 
     if (obj.day === curDate.getDate()) {
       return (
@@ -188,4 +172,15 @@ function DisplayCalender() {
     days.push(obj);
   }
   return days;
+}
+
+function adjustDateSyntax(year, month, day) {
+  if (month < 10) {
+    month = "0" + month;
+  }
+  if (day < 10) {
+    day = "0" + day;
+  }
+
+  return year + "-" + month + "-" + day;
 }
