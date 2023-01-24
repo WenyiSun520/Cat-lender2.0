@@ -1,6 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector} from "react-redux";
 import { useNavigate, useParams,Link } from "react-router-dom";
+
 import AgeCalculation from "../../util/AgeCalculater";
 
 export const SingleProfile = (props) => {
@@ -56,6 +57,7 @@ const DisplayEvents = (props) => {
         Start at: {event.start_time} {event.date}
       </h4>
       <p>{event.description}</p>
+      <Link to={`/editEventForm/${event.id}`}>Edit Event</Link>
     </div>
   ));
   return(

@@ -25,7 +25,7 @@ function App() {
         <Route path="/calender" element={<Calender />}></Route>
         <Route path="/addEventForm" element={<AddEventForm />}></Route>
         <Route
-          path="/editPetForm/:eventId"
+          path="/editEventForm/:eventId"
           element={<EditEventForm />}
         ></Route>
 

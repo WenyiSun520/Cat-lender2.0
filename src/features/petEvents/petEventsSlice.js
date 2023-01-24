@@ -1,4 +1,4 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createSlice, nanoid} from "@reduxjs/toolkit";
 const initialState = [
   {
     id: "1",
@@ -42,7 +42,7 @@ const petEventsSlice = createSlice({
       },
     },
     petEventUpdated(state, action) {
-      const { id, pets, title,date, start_time, description} = action.payload;
+      const { id, pets, title, date, start_time, description } = action.payload;
       const updatedEvent = state.find((event) => event.id === id);
       if (updatedEvent) {
         updatedEvent.pets = pets;
@@ -50,11 +50,19 @@ const petEventsSlice = createSlice({
         updatedEvent.date = date;
         updatedEvent.start_time = start_time;
         updatedEvent.description = description;
-
       }
     },
-  },
+    petEventNameUpdated(state, action) {
+      const updatedName = action.payload.updatedName;
+      const oldName = action.payload.originalName;
+      let updatedEvent = state.filter((event) => event.pets === oldName);
+      for(let i=0;i<updatedEvent.length;i++){
+          updatedEvent[i].pets = updatedName;
+      }
+    },
+  }
 });
 
-export const { petEventAdded, petEventUpdated } = petEventsSlice.actions;
+export const { petEventAdded, petEventUpdated, petEventNameUpdated } =
+  petEventsSlice.actions;
 export default petEventsSlice.reducer;

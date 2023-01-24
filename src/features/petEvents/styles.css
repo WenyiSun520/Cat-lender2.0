@@ -59,6 +59,11 @@
     transition: background-color 0.2s;
 }
 
+.calender-page .calender-container .days div:focus {
+    background-color:black;
+    color:whitesmoke;
+}
+
 .calender-page .days div:hover:not(.today) {
     background-color: #faebcd;
     border: 2px solid #f7c873;
@@ -73,6 +78,9 @@
     float: right;
 }
 
+
+
+
 .add-event-form {
     display: none;
     flex-direction: column;
@@ -82,9 +90,9 @@
 #addpetsEventBtn {
     display: relative;
     background-color: #ffffff;
-    color:#f7c873;
-    border:none;
-    border-radius:5px;
-    margin:5px;
+    color: #f7c873;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
 
 }

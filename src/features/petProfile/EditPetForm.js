@@ -3,6 +3,7 @@ import { breedsList } from "../../data/breed";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { petProfileUpdated } from "./petProfileSlice";
+import { petEventNameUpdated } from "../petEvents/petEventsSlice";
 
 export const EditPetForm = () => {
   const urlParams = useParams();
@@ -31,8 +32,21 @@ export const EditPetForm = () => {
   const onBdayChanged = (e) => setBday(e.target.value);
   const onBreedChanged = (e) => setBreed(e.target.value);
   const onSexChanged = (e) => setSex(e.target.value);
+
+
   const onUpdatePetProfileClicked = () => {
     // console.log("im in onSavePetProileClicked")
+    // if user change the pets name, the event relevant to the pets also need to update the pet name
+    if(singleProfile.name !== petname){ 
+      console.log("name changed")
+    dispatch(
+      petEventNameUpdated({
+        updatedName: petname,
+        originalName: singleProfile.name,
+      })
+    );
+
+    }
     dispatch(petProfileUpdated({ id: profileId, name:petname, bday, sex, breed }));
     navigate(`/profiles/${profileId}`);
   };
