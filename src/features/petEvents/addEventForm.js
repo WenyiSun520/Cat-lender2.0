@@ -75,6 +75,7 @@ export const AddEventForm = () => {
           type="time"
           className="start_time"
           name="start_time"
+          step="300"
           onChange={formik.handleChange}
           value={formik.values.startTime}
         ></input>
