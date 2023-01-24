@@ -14,6 +14,9 @@ This project is delicated to assist pets owner manage their furry friends' healt
 
 ## Programming Diary
 
+### 01.24.2023
+- use getTime() to compare two date is not wise, there may has some millsecond difference and the results obtained by gettime() would be different.
+- 2013-01-23 also has a different getTime() result comparing from 2013-1-23
 ### 01.23.2023
  
 - Add calender tab and add event entries

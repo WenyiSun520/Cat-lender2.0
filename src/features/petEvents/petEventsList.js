@@ -3,10 +3,11 @@ import { useSelector } from "react-redux";
 
 
 export const PetEventsList = (props) => {
-  const selectedDate = props.selectedDate
-  let timesOfSelecedDate = new Date(selectedDate).getTime();
+  const selectedDate = props.selectedDate;
+  let timesOfSelecedDate = new Date(selectedDate).setMilliseconds(0);
   // console.log(selectedDate);
   // console.log(timesOfSelecedDate);
+  // console.log(new Date("2023-01-23").setMilliseconds(0));
   const eventsList = useSelector((state) => state.petsEvent);
   const renderedEvent = eventsList
       .filter((event)=>{

@@ -24,46 +24,56 @@ const Month = [
 ];
 const curDate = new Date();
 export default function Calender() {
+  let initialDate;
+  if (curDate.getMonth() + 1 >= 10) {
+    initialDate =
+      curDate.getFullYear() +
+      "-" +
+      (curDate.getMonth() + 1) +
+      "-" +
+      curDate.getDate();
+  } else {
+    initialDate = curDate.getFullYear() +
+      "-0" +
+      (curDate.getMonth() + 1) +
+      "-" +
+      curDate.getDate();
+  };
   const [days, setDays] = useState(DisplayCalender());
-  const [renderedDate, setrenderedDate] = useState(
-    curDate.getFullYear() +
-      "-" +
-      curDate.getMonth() +
-      1 +
-      "-" +
-      curDate.getDate()
-  );
-  console.log("renderedDate is: "+renderedDate)
+  const [renderedDate, setrenderedDate] = useState(initialDate);
+  // console.log("renderedDate is: " + renderedDate);
 
   const datePicker = (e) => {
-    let selectDate = new Date();
+    // console.log("im in datePicker")
     let list = e.target.classList;
-    selectDate.setDate(list[0]); //change the date to user selected
-   setrenderedDate(
-      selectDate.getFullYear() +
-      "-" +
-      selectDate.getMonth() +
-      1 +
-      "-" +
-      selectDate.getDate()
-    );
+    let date = list[0];
+    // console.log(date);
+    setrenderedDate(date);
   };
-  let key = -1;
-  let displayDays = days.map((d) => {
-    if (d === curDate.getDate()) {
+
+  let displayDays = days.map((obj) => {
+    let date;
+    if (obj.month < 10) {
+      //adjust date syntax
+      date = obj.year + "-0" + obj.month + "-" + obj.day;
+    } else {
+      date = obj.year + "-" + obj.month + "-" + obj.day;
+    }
+
+    if (obj.day === curDate.getDate()) {
       return (
         <div
-          className={`${d} today add-events`}
-          key={key++}
+          className={`${date} today add-events`}
+          key={date}
           onClick={datePicker}
         >
-          {d}
+          {obj.day}
         </div>
       );
     } else {
       return (
-        <div className={`${d} add-events`} key={key++} onClick={datePicker}>
-          {d}
+        <div className={`${date} add-events`} key={date} onClick={datePicker}>
+          {obj.day}
         </div>
       );
     }
@@ -126,47 +136,56 @@ export default function Calender() {
 
 // get the days in sequence of a month
 function DisplayCalender() {
-  const lastDateOfCurMonth = new Date( // specify how many days in curr month: 30, 31...
+  const lastDateOfPrevMonth = new Date(
     curDate.getFullYear(),
     curDate.getMonth() + 1,
-    0 // set the day 0, will return the ending date of previous month
-  ).getDate();
+    0 // set the day 0, will return the ending date of the month
+  );
+  const totalDaysInPrevMonth = lastDateOfPrevMonth.getDate();
+  const indexOfLastDayOfPrevMonth = lastDateOfPrevMonth.getDay();
 
-  //find how many days of previous month should display on calender:
-  const lastDayOfCurMonth = new Date( // specify the index of week of the last day
-    curDate.getFullYear(),
-    curDate.getMonth() + 1,
-    0
-  ).getDay();
   const firstDateOfCurMonth = new Date( // specify the first day of current Month
     curDate.getFullYear(),
     curDate.getMonth(),
     1
   );
-  //get the day of the first date
   //getDay():0-based; 0 represents Sunday
-  const firstDayOfCurMonth = firstDateOfCurMonth.getDay();
-
-  // last date of Previous Month
-  const lastDateOfPrevMonth = new Date(
+  const indexOfFirstDayOfCurMonth = firstDateOfCurMonth.getDay();
+  const lastDateOfcurrMonth = new Date(
     curDate.getFullYear(),
     curDate.getMonth(),
     0
   );
-  const lastDayOfPrevMonth = lastDateOfPrevMonth.getDate(); // specify how many days in the previous month
+  const totalDaysInCurrMonth = lastDateOfcurrMonth.getDate();
 
   let days = [];
+
   //displayed days of previous month
-  for (let x = firstDayOfCurMonth - 1; x >= 0; x--) {
-    days.push(lastDayOfPrevMonth - x);
+  for (let x = indexOfFirstDayOfCurMonth - 1; x >= 0; x--) {
+    let obj = {
+      year: curDate.getFullYear(),
+      month: curDate.getMonth(),
+      day: totalDaysInCurrMonth - x,
+    };
+    days.push(obj);
   }
   //displayed days of current month
-  for (let i = 1; i <= lastDateOfCurMonth; i++) {
-    days.push(i);
+  for (let i = 1; i <= totalDaysInPrevMonth; i++) {
+    let obj = {
+      year: curDate.getFullYear(),
+      month: curDate.getMonth() + 1,
+      day: i,
+    };
+    days.push(obj);
   }
   //displayed days of next Month
-  for (let j = 0; j < 6 - lastDayOfCurMonth; j++) {
-    days.push(j + 1);
+  for (let j = 0; j < 6 - indexOfLastDayOfPrevMonth; j++) {
+    let obj = {
+      year: curDate.getFullYear(),
+      month: curDate.getMonth() + 2,
+      day: j + 1,
+    };
+    days.push(obj);
   }
   return days;
 }
