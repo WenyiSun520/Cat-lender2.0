@@ -1,7 +1,7 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 const initialState = [
   {
-    id: 1,
+    id: "1",
     pets: "snappy",
     title: "de-worm",
     date: "2023-01-23",
@@ -9,7 +9,7 @@ const initialState = [
     description: "revolution plus deworm is the best",
   },
   {
-    id: 2,
+    id: "2",
     pets: "eggy",
     title: "annunal health exam",
     date: "2023-01-24",
@@ -28,11 +28,11 @@ const petEventsSlice = createSlice({
         state.push(action.payload);
       },
       //prepare callback function to generate random value
-      prepare(petName, title, date, start_time, description) {
+      prepare(pets, title, date, start_time, description) {
         return {
           payload: {
             id: nanoid(),
-            petName,
+            pets,
             title,
             date,
             start_time,
@@ -41,8 +41,20 @@ const petEventsSlice = createSlice({
         };
       },
     },
+    petEventUpdated(state, action) {
+      const { id, pets, title,date, start_time, description} = action.payload;
+      const updatedEvent = state.find((event) => event.id === id);
+      if (updatedEvent) {
+        updatedEvent.pets = pets;
+        updatedEvent.title = title;
+        updatedEvent.date = date;
+        updatedEvent.start_time = start_time;
+        updatedEvent.description = description;
+
+      }
+    },
   },
 });
 
-export const { petEventAdded } = petEventsSlice.actions;
+export const { petEventAdded, petEventUpdated } = petEventsSlice.actions;
 export default petEventsSlice.reducer;

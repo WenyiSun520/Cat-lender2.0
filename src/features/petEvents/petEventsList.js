@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import {Link} from 'react-router-dom';
 
 
 export const PetEventsList = (props) => {
@@ -10,18 +11,19 @@ export const PetEventsList = (props) => {
   // console.log(new Date("2023-01-23").setMilliseconds(0));
   const eventsList = useSelector((state) => state.petsEvent);
   const renderedEvent = eventsList
-      .filter((event)=>{
-        return new Date(event.date).getTime()-timesOfSelecedDate === 0;
-      })
-      .map((event) => (
+    .filter((event) => {
+      return new Date(event.date).getTime() - timesOfSelecedDate === 0;
+    })
+    .map((event) => (
       <div className="events" key={event.id}>
         <h3>
           {event.pets}: {event.title}
         </h3>
         <h4>
-          Start at: {event.start_time} {event.date}
+          Start at: {event.start_time}, {event.date}
         </h4>
         <p>{event.description}</p>
+        <Link to={`/editPetForm/${event.id}`}>Edit Event</Link>
       </div>
     ));
 
