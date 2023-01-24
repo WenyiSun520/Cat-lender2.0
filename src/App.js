@@ -1,14 +1,22 @@
 import React from "react";
-// import { Counter } from "./features/counter/Counter";
-import {Navbar} from "./app/Navbar"
+import { Routes, Route} from "react-router-dom";
+import { Navbar } from "./app/Navbar";
 import { PetProfileList } from "./features/petProfile/PetProfileList";
-import "./App.css";
+import Calender from './features/petEvents/Calender';
+import {AddEventForm } from './features/petEvents/addEventForm'
+import ErrorPage from './app/errPage'
 
 function App() {
   return (
     <div className="App container-fluid">
       <Navbar />
-      <PetProfileList />
+      <Routes>
+        <Route path="/" element={<PetProfileList />}></Route>
+        <Route path="/calender" element={<Calender />}></Route>
+        <Route path="/addEventForm" element={<AddEventForm />}></Route>
+
+        <Route path="*" element={<ErrorPage />}></Route>
+      </Routes>
     </div>
   );
 }

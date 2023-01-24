@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
 import petProfilesReducer from "../features/petProfile/petProfileSlice";
+import petEventsSliceReducer from '../features/petEvents/petEventsSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     petsProfile: petProfilesReducer,
+    petsEvent: petEventsSliceReducer
   },
 });

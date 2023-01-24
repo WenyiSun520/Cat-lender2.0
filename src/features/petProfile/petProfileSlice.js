@@ -33,12 +33,22 @@ const petProfileSlice = createSlice({
             name,
             bday,
             sex,
-            breed
+            breed,
           },
         };
       },
     },
   },
+  // petProfileUpdated(state, action) {
+  //   const { id,name, bday, sex, breed } = action.payload;
+  //   const updatedProfile = state.find(profile =>profile.id ===id);
+  //   if(updatedProfile){
+  //     updatedProfile.name = name;
+  //     updatedProfile.bday = bday;
+  //     updatedProfile.sex = sex;
+  //     updatedProfile.breed = breed;
+  //   }
+  // },
 });
 export const { petProfileAdded } = petProfileSlice.actions;
 export default petProfileSlice.reducer;

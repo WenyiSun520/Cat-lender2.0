@@ -8,7 +8,7 @@ export const AddPetForm = () => {
   const [petname, setPetname] = useState("");
   const [bday, setBday] = useState("");
   const [sex, setSex] = useState("");
-  const [breed, setBreed] = useState("");
+  const [breed, setBreed] = useState("Domestic Shorthair");
   const dispatch = useDispatch();
 
   const renderBreedsList = () => {
@@ -26,11 +26,12 @@ export const AddPetForm = () => {
   const onSexChanged = (e) => setSex(e.target.value);
   const onSavePetProfileClicked = () => {
     if (petname && bday && sex && breed) {
+      // console.log("im in onSavePetProileClicked")
         dispatch(petProfileAdded(petname,bday,sex,breed));
-        // setPetname('');
-        // setBday('');
-        // setBreed('');
-        // setSex('')
+        setPetname('');
+        setBday('');
+        setBreed('');
+        setSex('')
     }
   };
 

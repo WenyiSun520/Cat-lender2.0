@@ -1,0 +1,79 @@
+* {
+    font-size: 18px;
+}
+
+
+#calender-page .calender-container {
+    /* text-align: center;
+    width: 500px;
+    height: 500px; */
+    margin-top: 10px;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+    width: 100%;
+    height: 100%;
+    /* border: 2px solid black; */
+    background-color: lightcoral;
+
+}
+
+
+
+
+#calender-page .month {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    background-color: antiquewhite;
+}
+
+#calender-page .month .prev:hover, #calender-page .month .next:hover {
+
+    border: 2px solid burlywood;
+}
+
+#calender-page .weekdays, #calender-page .days {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center
+}
+
+#calender-page .weekdays div {
+    justify-content: space-around;
+    width: 13%;
+}
+
+#calender-page .days div {
+    border: 2px solid black;
+    width: 13%;
+    padding: 8px;
+    margin: 2px;
+    justify-content: center;
+    transition: background-color 1s;
+}
+
+#calender-page .days div:hover:not(.today) {
+    background-color: lightcoral;
+    border: 2px solid whitesmoke;
+}
+
+#calender-page .days .today {
+    background-color: lightgreen
+}
+
+#calender-page .days div .plus {
+    cursor: pointer;
+    float: right;
+}
+
+.add-event-form {
+    display: none;
+    flex-direction: column;
+    width: 50%
+}
+
+/* #addpetsEventBtn {
+    display: none;
+} */
