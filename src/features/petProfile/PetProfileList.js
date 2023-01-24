@@ -6,6 +6,7 @@ export const PetProfileList = () => {
   const profiles = useSelector((state) => state.petsProfile);
   const renderedProfiles = profiles.map((pet) => (
     <div className="petProfile" key={pet.id}>
+      <img className="img-profile" src="./img/cat.jpeg"></img>
       <ul>
         <li>Name:{pet.name}</li>
         <li>Age: {ageCalculation(pet.bday)}</li>
@@ -16,12 +17,9 @@ export const PetProfileList = () => {
   ));
 
   return (
-    <section className="petProfile-list">
+    <section className="petProfilePage">
       <h2>Your Pets</h2>
-      {renderedProfiles}
-      {/* <button className="addPets-btn">
-        Add Pets
-      </button> */}
+      <div className="petProfileList">{renderedProfiles}</div>
       <AddPetForm />
     </section>
   );

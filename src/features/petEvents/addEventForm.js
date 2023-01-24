@@ -75,7 +75,6 @@ export const AddEventForm = () => {
           type="time"
           className="start_time"
           name="start_time"
-          step="300"
           onChange={formik.handleChange}
           value={formik.values.startTime}
         ></input>
@@ -104,7 +103,7 @@ export const AddEventForm = () => {
           onChange={formik.handleChange}
           value={formik.values.note}
         />
-        <button type="submit">Submit</button>
+        <button className="eventsubmit-btn" type="submit">Submit</button>
       </form>
     </section>
   );

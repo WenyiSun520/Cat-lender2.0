@@ -4,16 +4,27 @@ import {Link} from 'react-router-dom'
 
 export const Navbar= ()=>{
     return (
-      <nav>
-        <section>
-          <h1>Cat-lender</h1>
-          <div className="navContent">
-            <div className="navLink">
-              <Link to="/">Pets Profiles</Link>
-              <Link to="/calender">Pets Calender</Link>
-            </div>
+      <section className="navbar-section">
+        <Link to="/" className="nav-link ">
+          <h1 className="title">Cat-lender</h1>
+        </Link>
+        <nav className="nav nav-pills nav-fill">
+          <div className="nav-item">
+            <Link to="/" className="nav-link">
+              Pets Profiles
+            </Link>
           </div>
-        </section>
-      </nav>
+          <div className="nav-item">
+            <Link to="/calender" className="nav-link nav-item">
+              Pets Calender
+            </Link>
+          </div>
+          <div className="nav-item">
+            <Link to="/calender" className="nav-link nav-item">
+              Weight Tracker
+            </Link>
+          </div>
+        </nav>
+      </section>
     );
 }

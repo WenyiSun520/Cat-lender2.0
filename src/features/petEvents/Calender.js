@@ -81,7 +81,7 @@ export default function Calender() {
   };
 
   return (
-    <div id="calender-page">
+    <div className="calender-page">
       <div className="calender-container">
         <div className="month">
           <FontAwesomeIcon

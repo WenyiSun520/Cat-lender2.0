@@ -16,6 +16,7 @@ This project is delicated to assist pets owner manage their furry friends' healt
 
 ### Work need to be done:
 
+- SingleProfle with the pet's events showing below
 - Add notification to each days that has events
 - Beautify prtsprofile section and events section
 - allow user to edit pets profile and events

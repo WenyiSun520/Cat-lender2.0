@@ -36,7 +36,7 @@ export const AddPetForm = () => {
   };
 
   return (
-    <section>
+    <section className="addpet-section">
       <h2>Add your pets profile</h2>
       <form className="addPetForm">
         <label htmlFor="petname">Name:</label>
