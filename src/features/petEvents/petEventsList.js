@@ -7,7 +7,7 @@ export const RenderAllPetEvent = () =>{
     (event) => DisplayEventSyntax(event)
   );
   return (
-    <div className="reminder">
+    <div className="reminder all-reminder">
       <h3>All Events:</h3> {eventsList}
     </div>
   );

@@ -17,6 +17,7 @@ code {
     monospace;
 }
 
+/* CSS for NavBar */
 .navbar-section {
   background-color: #f7c873;
 
@@ -40,6 +41,8 @@ nav section h1 {
   font-family: 'Oleo Script', cursive;
 
 }
+
+/* CSS for ProfileList Page */
 
 .petProfileList {
   display: flex;
@@ -80,7 +83,7 @@ nav section h1 {
   max-width: max-content;
 }
 
-
+/* CSS for forms */
 
 
 .addPetForm, .addEventsForm, .editPetForm {
@@ -108,7 +111,7 @@ nav section h1 {
   margin: 5px;
 }
 
-
+/* CSS for EventsList Page */
 #note {
   text-indent: 10px;
 
@@ -137,6 +140,27 @@ nav section h1 {
 
 .prev.icon, .next.icon {
   padding-top: 10px;
+}
+
+.all-reminder .events {
+  flex: 1.5;
+  max-height: 5em;
+  overflow-y: hidden;
+  transition-property: all;
+  transition-duration: 0.5s;
+  margin: 10px;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, .5);
+  border-radius: 20px;
+  border: 10px solid #fff;
+  background-color: #fff;
+}
+
+.all-reminder .events:hover {
+  font-size: 24px;
+  font-weight: bold;
+  flex-basis: 20%;
+  transition: .5s;
+  max-height: fit-content;
 }
 
 /* CSS for SingleProfilePage.js */
@@ -173,4 +197,3 @@ nav section h1 {
   margin-top: 10px;
   background-color: #f7c873;
 }
-

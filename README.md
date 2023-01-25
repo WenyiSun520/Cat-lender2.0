@@ -16,6 +16,7 @@ This project is delicated to assist pets owner manage their furry friends' healt
 
 ### Work need to be done:
 
+- Sorting all events list
 - ~~SingleProfle with the pet's events showing below~~(01.24.2023)
 - Add notification to each days that has events
 - ~~Beautify prtsprofile section and events section~~(01.24.2023)

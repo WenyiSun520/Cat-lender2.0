@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./styles.css";
+import "./calender.css";
 import {
   faArrowAltCircleLeft,
   faArrowAltCircleRight,
