@@ -21,7 +21,7 @@ export const RenderAllPetEvent = () => {
   let sortedEventsList = validEventsList
     .slice()
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-  let results = sortedEventsList.map((event) => DisplayEventSyntax(event));
+  let results = sortedEventsList.map((event) => <DisplayEventSyntax key={event.id} event={event} />);
   return (
     <div className="reminder all-reminder">
       <h3>All Upcoming Events:</h3>
@@ -37,7 +37,7 @@ export const PetEventsList = (props) => {
     .filter((event) => {
       return new Date(event.date).getTime() - timesOfSelecedDate === 0;
     })
-    .map((event) => DisplayEventSyntax(event));
+    .map((event) => <DisplayEventSyntax key={event.id} event={event} />);
 
   return <div className="reminder">{renderedEvent}</div>;
 };

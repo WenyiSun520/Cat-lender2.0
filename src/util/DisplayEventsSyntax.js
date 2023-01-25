@@ -3,7 +3,8 @@ import { useDispatch } from "react-redux";
 import { petEventDeleted } from "../features/petEvents/petEventsSlice";
 import { deleteDate } from "./checkDateHasEventsMap";
 
-export default function DisplayEventSyntax(event) {
+export default function DisplayEventSyntax(props) {
+  let event = props.event;
   const dispatch = useDispatch();
   const handleEventDelete = () => {
     dispatch(petEventDeleted({ eventId: event.id }));
