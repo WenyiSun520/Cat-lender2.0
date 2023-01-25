@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { petEventAdded } from "./petEventsSlice";
 import { useNavigate } from "react-router-dom";
-import { hasEventsDateSet } from "../../data/dateHasEvents";
+import { addDate } from "../../util/checkDateHasEventsMap";
 
 
 export const AddEventForm = () => {
@@ -28,7 +28,7 @@ export const AddEventForm = () => {
       note: "",
     },
     onSubmit: (values) => {
-      hasEventsDateSet.add(values.date);
+      addDate(values.date);// add date to dateHasEventsMap
       dispatch(petEventAdded(values.pet, values.title, values.date, values.start_time, values.note));
       navigate("/calender");
     },
@@ -77,21 +77,6 @@ export const AddEventForm = () => {
           onChange={formik.handleChange}
           value={formik.values.startTime}
         ></input>
-        {/* <label htmlFor="event-end">To</label>
-          <input type="time" className="event-end" name="event-end"></input> */}
-
-        {/* <label htmlFor="type">Type</label>
-        <select
-          id="type"
-          name="type"
-          onChange={formik.handleChange}
-          value={formik.values.type}
-        >
-          <option value="">Select a categories</option>
-          <option value="grooming">Grooming</option>
-          <option value="deworm">Deworm</option>
-          <option value="Other">Other</option>
-        </select> */}
 
         <label htmlFor="note">Note</label>
         <textarea

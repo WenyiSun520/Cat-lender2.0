@@ -18,7 +18,6 @@ export const RenderAllPetEvent = () => {
       pastDueEventsList.push(eventsList[i]);
     }
   }
-
   let sortedEventsList = validEventsList
     .slice()
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());

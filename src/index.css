@@ -39,6 +39,7 @@ code {
 
 nav section h1 {
   font-family: 'Oleo Script', cursive;
+  size: 20px;
 
 }
 
@@ -125,9 +126,31 @@ nav section h1 {
 /* CSS for EventsList Page */
 #note {
   text-indent: 10px;
-
 }
 
+
+.eventBtnMenu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+.editEventsLink {
+  width: max-content;
+}
+
+
+.deleteEventBtn {
+  font-size: 16px;
+  padding: 2px;
+  width: max-content;
+  position: relative;
+  background-color: #ffffff;
+  color: #f7c873;
+  border: 2px solid #f7c873;
+  border-radius: 5px;
+}
 
 .events.add-profile {
   height: 175px;
@@ -179,7 +202,7 @@ nav section h1 {
   font-size: 24px;
   font-weight: bold;
   flex-basis: 20%;
-  max-height: fit-content;
+  max-height: max-content;
 
 
 }

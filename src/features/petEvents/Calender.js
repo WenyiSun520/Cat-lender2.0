@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./calender.css";
-import { hasEventsDateSet } from "../../data/dateHasEvents";
+import { hasEventsDateMap } from "../../data/dateHasEvents";
 import {
   faArrowAltCircleLeft,
   faArrowAltCircleRight,
@@ -52,7 +52,7 @@ export default function Calender() {
           onClick={datePicker}
         >
           {obj.day}
-          {hasEventsDateSet.has(date) ? (
+          {hasEventsDateMap.has(date) ? (
             <i className="fa-solid fa-cat" style={{ float: "right" }}></i>
           ) : (
             ""
@@ -63,7 +63,7 @@ export default function Calender() {
       return (
         <div className={`${date} add-events`} key={date} onClick={datePicker}>
           {obj.day}
-          {hasEventsDateSet.has(date) ? (
+          {hasEventsDateMap.has(date) ? (
             <i className="fa-solid fa-cat" style={{ float: "right" }}></i>
           ) : (
             ""

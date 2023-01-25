@@ -2,9 +2,8 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { petEventUpdated } from "./petEventsSlice";
-import { useNavigate,useParams } from "react-router-dom";
-import { hasEventsDateSet } from "../../data/dateHasEvents";
-
+import { useNavigate, useParams } from "react-router-dom";
+import { updateDate } from "../../util/checkDateHasEventsMap";
 
 export const EditEventForm = () => {
   const dispatch = useDispatch();
@@ -32,20 +31,16 @@ export const EditEventForm = () => {
       note: singleEvent.description,
     },
     onSubmit: (values) => {
-      console.log("im in edit event form onsubmit")
-      hasEventsDateSet.delete(singleEvent.date);
-      hasEventsDateSet.add(values.date);
+      updateDate(singleEvent.date, values.date); // update date to dateHasEventsMap
       dispatch(
-        petEventUpdated(
-          {
-          id:singleEvent.id,
-          pets:values.pet, 
-          title:values.title,
-          date:values.date, 
-          start_time:values.start_time, 
-          description:values.note
-          }
-        )
+        petEventUpdated({
+          id: singleEvent.id,
+          pets: values.pet,
+          title: values.title,
+          date: values.date,
+          start_time: values.start_time,
+          description: values.note,
+        })
       );
       navigate("/calender");
     },
