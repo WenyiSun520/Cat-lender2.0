@@ -56,16 +56,18 @@ nav section h1 {
   flex-direction: row;
   justify-content: center;
   width: 400px;
-  height: max-content;
+  height: fit-content;
   padding: 10px;
   margin: 5px;
   border-radius: 15px;
-  border: 2px solid #434343;
-
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, .5);
+  transition: 0.5s;
 }
+
 
 .events {
   flex-direction: column;
+  height: 200px;
 }
 
 
@@ -82,6 +84,14 @@ nav section h1 {
 .addpet-section {
   max-width: max-content;
 }
+
+.all-events {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
 
 /* CSS for forms */
 
@@ -102,6 +112,7 @@ nav section h1 {
 }
 
 
+
 .eventsubmit-btn {
   margin-top: 20px;
   background-color: #ffffff;
@@ -116,6 +127,7 @@ nav section h1 {
   text-indent: 10px;
 
 }
+
 
 .events.add-profile {
   height: 175px;
@@ -144,7 +156,7 @@ nav section h1 {
 
 .all-reminder .events {
   flex: 1.5;
-  max-height: 5em;
+  max-height: 4.5em;
   overflow-y: hidden;
   transition-property: all;
   transition-duration: 0.5s;
@@ -161,6 +173,15 @@ nav section h1 {
   flex-basis: 20%;
   transition: .5s;
   max-height: fit-content;
+}
+
+.reminder.all-reminder div:first-of-type {
+  font-size: 24px;
+  font-weight: bold;
+  flex-basis: 20%;
+  max-height: fit-content;
+
+
 }
 
 /* CSS for SingleProfilePage.js */

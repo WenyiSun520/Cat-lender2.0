@@ -11,20 +11,20 @@ This project is delicated to assist pets owner manage their furry friends' healt
 - Cat-lender1.0 is achieved due to its unclear structure which is hard to reorgnized and upgraded
 - Cat-lender2.0 inheriteaed most functions from 1.0 version and it also apply latest redux-toolkit to write the react-redux application in a more readble and clean way 
   
-
-## Programming Diary
-
 ### Work need to be done:
 
-- Sorting all events list
+- ~~Sorting all upcoming events list~~(01.24.2023)
 - ~~SingleProfle with the pet's events showing below~~(01.24.2023)
-- Add notification to each days that has events
+- ~~Add notification to each days that has events~~(01.24.2023)
 - ~~Beautify prtsprofile section and events section~~(01.24.2023)
-- allow user to edit pets profile and events
+- ~~allow user to edit pets profile and events~~(01.24.2023)
 - allow user to delete pets profile and events
 - weight tracker
+## Programming Diary
+
 ### 01.24.2023
 - use getTime() to compare two date is not wise, there may has some millsecond difference even though their year, month, date are same, and so the results obtained by gettime() would be different.
+- if children elements are different use :first-of-type, else (children elements are the same) use :first-child
 
 ### 01.23.2023
  

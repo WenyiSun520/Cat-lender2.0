@@ -39,7 +39,9 @@ export const SingleProfile = (props) => {
           Edit Profile
         </Link>
       </div>
-      <DisplayEvents petName={singleProfile.name} />
+      <div className="all-events">
+        <DisplayEvents petName={singleProfile.name} />
+      </div>
     </section>
   );
 };

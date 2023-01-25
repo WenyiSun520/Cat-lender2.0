@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { petEventUpdated } from "./petEventsSlice";
 import { useNavigate,useParams } from "react-router-dom";
+import { hasEventsDateSet } from "../../data/dateHasEvents";
+
 
 export const EditEventForm = () => {
   const dispatch = useDispatch();
@@ -30,6 +32,9 @@ export const EditEventForm = () => {
       note: singleEvent.description,
     },
     onSubmit: (values) => {
+      console.log("im in edit event form onsubmit")
+      hasEventsDateSet.delete(singleEvent.date);
+      hasEventsDateSet.add(values.date);
       dispatch(
         petEventUpdated(
           {

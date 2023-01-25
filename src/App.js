@@ -32,6 +32,8 @@ function App() {
           element={<EditEventForm />}
         ></Route>
         <Route path="*" element={<ErrorPage />}></Route>
+        <Route path="/editPetForm/*" element={<ErrorPage />}></Route>
+        <Route path="/editEventForm/*" element={<ErrorPage />}></Route>
       </Routes>
     </div>
   );

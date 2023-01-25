@@ -16,6 +16,30 @@ const initialState = [
     start_time: "10:00 am",
     description: "Fremont Animal Hospital",
   },
+  {
+    id: "3",
+    pets: "eggy",
+    title: "grooming",
+    date: "2023-01-28",
+    start_time: "2:00 pm",
+    description: "University Way Petco",
+  },
+  {
+    id: "4",
+    pets: "eggy",
+    title: "Orijen Pickup",
+    date: "2023-02-01",
+    start_time: "3:00 pm",
+    description: "Shoreline PetSmart",
+  },
+  {
+    id: "5",
+    pets: "snappy",
+    title: "Annual Wellness Check",
+    date: "2023-03-15",
+    start_time: "1:00 pm",
+    description: "Fremont Animal Hospital, brings a little poop",
+  },
 ];
 
 const petEventsSlice = createSlice({

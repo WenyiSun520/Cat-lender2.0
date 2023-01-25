@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import { petEventAdded } from "./petEventsSlice";
 import { useNavigate } from "react-router-dom";
+import { hasEventsDateSet } from "../../data/dateHasEvents";
+
 
 export const AddEventForm = () => {
   const dispatch = useDispatch();
@@ -26,6 +28,7 @@ export const AddEventForm = () => {
       note: "",
     },
     onSubmit: (values) => {
+      hasEventsDateSet.add(values.date);
       dispatch(petEventAdded(values.pet, values.title, values.date, values.start_time, values.note));
       navigate("/calender");
     },
