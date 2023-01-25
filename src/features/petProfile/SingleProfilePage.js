@@ -51,6 +51,8 @@ const DisplayEvents = (props) => {
   const events = useSelector((state) =>
     state.petsEvent.filter((profile) => profile.pets === petname)
   );
-  const renderedEvents = events.map((event) => DisplayEventSyntax(event));
+  const renderedEvents = events.map((event) => (
+    <DisplayEventSyntax key={event.id} event={event} />
+  ));
   return renderedEvents;
 };

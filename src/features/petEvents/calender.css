@@ -13,7 +13,6 @@
 .calender-page {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     margin-top: 10px;
     width: 50%;
     border-radius: 10px;
@@ -24,7 +23,7 @@
     position: static;
     border-radius: 10px;
     width: 100%;
-    height: 100%;
+    height: 450px;
     background-color: #faebcd
 }
 
