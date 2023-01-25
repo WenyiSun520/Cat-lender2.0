@@ -6,7 +6,7 @@ import {
   faArrowAltCircleRight,
 } from "@fortawesome/free-regular-svg-icons";
 import { useNavigate } from "react-router-dom";
-import { PetEventsList } from "./petEventsList.js";
+import { PetEventsList, RenderAllPetEvent } from "./petEventsList.js";
 
 const Month = [
   "January",
@@ -81,40 +81,43 @@ export default function Calender() {
   };
 
   return (
-    <div className="calender-page">
-      <div className="calender-container">
-        <div className="month">
-          <FontAwesomeIcon
-            className="prev icon"
-            onClick={prevCalender}
-            icon={faArrowAltCircleLeft}
-          />
-          <div className="cur-date">
-            <h1 className="cur-month">{Month[curMonthIndex]}</h1>
-            <p>{curDate.toDateString()}</p>
+    <section className="calender-section">
+      <div className="calender-page">
+        <div className="calender-container">
+          <div className="month">
+            <FontAwesomeIcon
+              className="prev icon"
+              onClick={prevCalender}
+              icon={faArrowAltCircleLeft}
+            />
+            <div className="cur-date">
+              <h1 className="cur-month">{Month[curMonthIndex]}</h1>
+              <p>{curDate.toDateString()}</p>
+            </div>
+            <FontAwesomeIcon
+              className="next icon"
+              onClick={nextCalender}
+              icon={faArrowAltCircleRight}
+            />
           </div>
-          <FontAwesomeIcon
-            className="next icon"
-            onClick={nextCalender}
-            icon={faArrowAltCircleRight}
-          />
+          <div className="weekdays">
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+          </div>
+          <div className="days">{displayDays}</div>
+          <button id="addpetsEventBtn" onClick={handleFormClicked}>
+            Add Reminder
+          </button>
         </div>
-        <div className="weekdays">
-          <div>Sun</div>
-          <div>Mon</div>
-          <div>Tue</div>
-          <div>Wed</div>
-          <div>Thu</div>
-          <div>Fri</div>
-          <div>Sat</div>
-        </div>
-        <div className="days">{displayDays}</div>
-        <button id="addpetsEventBtn" onClick={handleFormClicked}>
-          Add Reminder
-        </button>
+        <PetEventsList selectedDate={renderedDate} />
       </div>
-      <PetEventsList selectedDate={renderedDate} />
-    </div>
+      <RenderAllPetEvent />
+    </section>
   );
 }
 

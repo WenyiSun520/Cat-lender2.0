@@ -1,6 +1,7 @@
 import React from "react";
-import { useSelector} from "react-redux";
-import { useNavigate, useParams,Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate, useParams, Link } from "react-router-dom";
+import DisplayEventSyntax from "../../util/DisplayEventsSyntax";
 
 import AgeCalculation from "../../util/AgeCalculater";
 
@@ -48,21 +49,6 @@ const DisplayEvents = (props) => {
   const events = useSelector((state) =>
     state.petsEvent.filter((profile) => profile.pets === petname)
   );
-  const renderedEvents = events.map((event) => (
-    <div className="event" key={event.id}>
-      <h3>
-        {event.pets}: {event.title}
-      </h3>
-      <h4>
-        Start at: {event.start_time} {event.date}
-      </h4>
-      <p>{event.description}</p>
-      <Link to={`/editEventForm/${event.id}`}>Edit Event</Link>
-    </div>
-  ));
-  return(
-      <div className="events">
-          {renderedEvents}
-      </div>
-  )
+  const renderedEvents = events.map((event) => DisplayEventSyntax(event));
+  return renderedEvents;
 };

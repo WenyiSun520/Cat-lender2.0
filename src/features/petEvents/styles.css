@@ -2,11 +2,18 @@
     font-size: 18px;
 }
 
+.calender-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+
+
 .calender-page {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-left: 20%;
     margin-top: 10px;
     width: 50%;
     border-radius: 10px;
@@ -60,8 +67,8 @@
 }
 
 .calender-page .calender-container .days div:focus {
-    background-color:black;
-    color:whitesmoke;
+    background-color: black;
+    color: whitesmoke;
 }
 
 .calender-page .days div:hover:not(.today) {
