@@ -1,0 +1,1 @@
+export const imgName = [ "eggy.jpeg", "snappy.jpeg","cat.jpeg"]

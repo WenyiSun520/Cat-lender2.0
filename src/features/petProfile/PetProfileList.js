@@ -1,20 +1,26 @@
 import React from "react";
 import { useSelector } from "react-redux";
 // import { AddPetForm } from "./AddPetForm";
-import {useNavigate, Link} from 'react-router-dom';
+import { useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faSquarePlus
-} from "@fortawesome/free-regular-svg-icons";
-import AgeCalculation from '../../util/AgeCalculater'
-
+import { faSquarePlus } from "@fortawesome/free-regular-svg-icons";
+import AgeCalculation from "../../util/AgeCalculater";
+import { imgName } from "../../data/imgName";
 
 export const PetProfileList = () => {
   const navigate = useNavigate();
   const profiles = useSelector((state) => state.petsProfile);
   const renderedProfiles = profiles.map((pet) => (
     <div className="petProfile" key={pet.id}>
-      <img className="img-profile" src="./img/cat.jpeg" alt="sample profile" />
+      <img
+        className="img-profile"
+        src={
+          imgName.includes(pet.name + ".jpeg")
+            ? `./img/${pet.name}.jpeg`
+            : "./img/cat.jpeg"
+        }
+        alt="sample profile"
+      />
       <ul>
         <li>Name:{pet.name}</li>
         <li>Age: {AgeCalculation(pet.bday)}</li>
@@ -25,9 +31,9 @@ export const PetProfileList = () => {
     </div>
   ));
 
-  const handleOpenAddPetForm =()=>{
-       navigate("./addPetForm");
-  }
+  const handleOpenAddPetForm = () => {
+    navigate("./addPetForm");
+  };
 
   return (
     <section className="petProfilePage">

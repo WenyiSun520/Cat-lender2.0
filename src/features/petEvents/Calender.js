@@ -8,6 +8,7 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { PetEventsList, RenderAllPetEvent } from "./petEventsList.js";
+import {adjustDateSyntax} from '../../util/AdjustDateSyntax'
 
 const Month = [
   "January",
@@ -187,13 +188,4 @@ function DisplayCalender() {
   return days;
 }
 
-function adjustDateSyntax(year, month, day) {
-  if (month < 10) {
-    month = "0" + month;
-  }
-  if (day < 10) {
-    day = "0" + day;
-  }
 
-  return year + "-" + month + "-" + day;
-}

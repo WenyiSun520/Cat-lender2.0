@@ -2,8 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import DisplayEventSyntax from "../../util/DisplayEventsSyntax";
-
+import {SortEventsFromOld } from '../../util/SortEvents'
 import AgeCalculation from "../../util/AgeCalculater";
+import { imgName } from "../../data/imgName";
 
 export const SingleProfile = (props) => {
   const navigate = useNavigate();
@@ -22,7 +23,11 @@ export const SingleProfile = (props) => {
       <div className="profile">
         <img
           className="img-profile"
-          src="./img/cat.jpeg"
+          src={
+            imgName.includes(singleProfile.name + ".jpeg")
+              ? `../img/${singleProfile.name}.jpeg`
+              : "../img/cat.jpeg"
+          }
           alt="sample profile"
         />
         <ul>
@@ -31,6 +36,22 @@ export const SingleProfile = (props) => {
           <li>Age: {AgeCalculation(singleProfile.bday)}</li>
           <li>Sex: {singleProfile.sex}</li>
           <li>Breed: {singleProfile.breed}</li>
+          <li>
+            Vets Info:
+            <a
+              href={singleProfile.vetsInfo.vetsUrl}
+              rel="noreferrer"
+              target="_blank"
+            >
+              {singleProfile.vetsInfo.vetsName}
+            </a>,
+            <a href={"mailto:" + singleProfile.vetsInfo.vetsEmail}>
+              {"  "+singleProfile.vetsInfo.vetsEmail}
+            </a>,
+            <a href={"tel:" + singleProfile.vetsInfo.vetsPhone}>
+              {"  "+singleProfile.vetsInfo.vetsPhone}
+            </a>
+          </li>
         </ul>
         <Link
           to={`/editPetForm/${singleProfile.id}`}
@@ -54,5 +75,5 @@ const DisplayEvents = (props) => {
   const renderedEvents = events.map((event) => (
     <DisplayEventSyntax key={event.id} event={event} />
   ));
-  return renderedEvents;
+  return SortEventsFromOld(renderedEvents);
 };

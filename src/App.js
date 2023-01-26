@@ -31,6 +31,8 @@ function App() {
           path="/editEventForm/:eventId"
           element={<EditEventForm />}
         ></Route>
+
+        {/* handle error routes */}
         <Route path="*" element={<ErrorPage />}></Route>
         <Route path="/editPetForm/*" element={<ErrorPage />}></Route>
         <Route path="/editEventForm/*" element={<ErrorPage />}></Route>

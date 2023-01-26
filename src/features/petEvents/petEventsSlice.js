@@ -5,7 +5,7 @@ const initialState = [
     pets: "snappy",
     title: "de-worm",
     date: "2023-01-23",
-    start_time: "1:00 pm",
+    start_time: "13:00",
     description: "revolution plus deworm is the best",
   },
   {
@@ -13,7 +13,7 @@ const initialState = [
     pets: "eggy",
     title: "annunal health exam",
     date: "2023-01-24",
-    start_time: "10:00 am",
+    start_time: "10:00",
     description: "Fremont Animal Hospital",
   },
   {
@@ -21,7 +21,7 @@ const initialState = [
     pets: "eggy",
     title: "grooming",
     date: "2023-01-28",
-    start_time: "2:00 pm",
+    start_time: "14:00",
     description: "University Way Petco",
   },
   {
@@ -29,7 +29,7 @@ const initialState = [
     pets: "eggy",
     title: "Orijen Pickup",
     date: "2023-02-01",
-    start_time: "3:00 pm",
+    start_time: "15:00",
     description: "Shoreline PetSmart",
   },
   {
@@ -37,7 +37,7 @@ const initialState = [
     pets: "snappy",
     title: "Annual Wellness Check",
     date: "2023-03-15",
-    start_time: "1:00 pm",
+    start_time: "18:00",
     description: "Fremont Animal Hospital, brings a little poop",
   },
 ];

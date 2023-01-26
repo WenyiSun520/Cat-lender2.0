@@ -7,6 +7,12 @@ const initialState = [
     bday: "2021-09-01",
     sex: "male",
     breed: "domestic shorthair",
+    vetsInfo: {
+      vetsName: "Fremont Animal Hospital",
+      vetsPhone: "(206) 593-2442",
+      vetsEmail: "hello@fremontvets.com",
+      vetsUrl: "https://fremontvets.com/",
+    },
   },
   {
     id: "2",
@@ -14,6 +20,12 @@ const initialState = [
     bday: "2021-11-21",
     sex: "male",
     breed: "domestic shorthair",
+    vetsInfo: {
+      vetsName: "Fremont Animal Hospital",
+      vetsPhone: "(206) 593-2442",
+      vetsEmail: "hello@fremontvets.com",
+      vetsUrl: "https://fremontvets.com/",
+    },
   },
 ];
 
@@ -26,7 +38,7 @@ const petProfileSlice = createSlice({
         state.push(action.payload);
       },
       //prepare callback function to generate random value
-      prepare(name, bday, sex, breed) {
+      prepare(name, bday, sex, breed,vetsInfo) {
         return {
           payload: {
             id: nanoid(),
@@ -34,6 +46,7 @@ const petProfileSlice = createSlice({
             bday,
             sex,
             breed,
+            vetsInfo
           },
         };
       },
