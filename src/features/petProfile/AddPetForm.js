@@ -1,143 +1,138 @@
-import React, { useState } from "react";
+import React from "react";
 import { breedsList } from "../../data/breed";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { petProfileAdded } from "./petProfileSlice";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+import {
+  MyTextInput,
+  MyOtherInput,
+  MySelection,
+} from "../../formik/formikComponents";
+
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 export const AddPetForm = () => {
-  const [breedlist, setBreedlist] = useState([]);
-  const [petname, setPetname] = useState("");
-  const [bday, setBday] = useState("");
-  const [sex, setSex] = useState("");
-  const [vetsInfo, setVetsInfo] = useState({
-    vetsName: "",
-    vetsPhone: "",
-    vetsEmail: "",
-    vetsUrl: "",
-  });
-  const [breed, setBreed] = useState("Domestic Shorthair");
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const renderBreedsList = () => {
-    let breedsOption = breedsList.map((breed) => (
-      <option key={breed} value={breed}>
-        {breed}
-      </option>
-    ));
-    setBreedlist(breedsOption);
-  };
-
-  const onPetnameChanged = (e) => setPetname(e.target.value);
-  const onBdayChanged = (e) => setBday(e.target.value);
-  const onBreedChanged = (e) => setBreed(e.target.value);
-  const onSexChanged = (e) => setSex(e.target.value);
-  const onVetsNameChanged = (e) =>
-    setVetsInfo({ ...vetsInfo, vetsName: e.target.value });
-  const onVetsPhoneChanged = (e) =>
-    setVetsInfo({ ...vetsInfo, vetsPhone: e.target.value });
-
-  const onVetsEmailChanged = (e) =>
-    setVetsInfo({ ...vetsInfo, vetsEmail: e.target.value });
-
-  const onVetsUrlChanged = (e) =>
-    setVetsInfo({ ...vetsInfo, vetsUrl: e.target.value });
-
-  const onSavePetProfileClicked = () => {
-    if (petname && bday && sex && breed) {
-      // console.log("im in onSavePetProileClicked")
-      dispatch(petProfileAdded(petname, bday, sex, breed, vetsInfo));
-      setPetname("");
-      setBday("");
-      setBreed("");
-      setSex("");
-      setVetsInfo("");
-    }
-    navigate("/");
-  };
-
+  const renderBreedsList = breedsList.map((breed) => (
+    <option key={breed} value={breed}>
+      {breed}
+    </option>
+  ));
   return (
     <section className="addpet-section">
-      <h2>Add your pets profile</h2>
-      <form className="addPetForm">
-        <label htmlFor="petname">Name:</label>
-        <input
-          type="text"
-          id="petname"
-          name="petname"
-          value={petname}
-          onChange={onPetnameChanged}
-        />
-        <label htmlFor="bday">Birthday:</label>
-        <input
-          type="date"
-          min="1970-01-01"
-          max={new Date().toISOString().substring(0, 10)}
-          id="bday"
-          name="bday"
-          value={bday}
-          onChange={onBdayChanged}
-        />
-
-        <div onChange={onSexChanged}>
-          <input type="radio" id="male" name="sex" value="Male" />
-          <label htmlFor="male">Male</label>
-          <input type="radio" id="female" name="sex" value="Female" />
-          <label htmlFor="female">Female</label>
-        </div>
-
-        <label htmlFor="breeds">Breeds:</label>
-        <select
-          name="breeds"
-          id="breeds"
-          value={breed}
-          onClick={renderBreedsList}
-          onChange={onBreedChanged}
-        >
-          <option value="">Choose A Breed</option>
-          {breedlist}
-        </select>
-
-        <label>Vets Information</label>
-        <label htmlFor="vetsName">Vets Name:</label>
-        <input
-          type="text"
-          id="vetsName"
-          name="vetsName"
-          value={vetsInfo.vetsName}
-          onChange={onVetsNameChanged}
-        />
-        <label htmlFor="vetsPhone">Vets Phone Number:</label>
-        <input
-          type="tel"
-          id="vetsPhone"
-          name="vetsPhone"
-          value={vetsInfo.vetsPhone}
-          onChange={onVetsPhoneChanged}
-        />
-        <label htmlFor="vetsEmail">Vets Email:</label>
-        <input
-          type="email"
-          id="vetsEmail"
-          name="vetsEmail"
-          value={vetsInfo.vetsEmail}
-          onChange={onVetsEmailChanged}
-        />
-
-        <label htmlFor="vetsUrl">Vets Website Url:</label>
-        <input
-          type="url"
-          id="vetsUrl"
-          name="vetsUrl"
-          placeholder="https://example.com"
-          pattern="https://.*"
-          value={vetsInfo.vetsAddress}
-          onChange={onVetsUrlChanged}
-        />
-
-        <button type="button" onClick={onSavePetProfileClicked}>
-          Save Post
-        </button>
-      </form>
+      <Formik
+        initialValues={{
+          petname: "",
+          bday: "",
+          sex: "",
+          breed: "",
+          vetsInfo: {
+            vetsName: "",
+            vetsPhone: "",
+            vetsEmail: "",
+            vetsUrl: "",
+          },
+        }}
+        validationSchema={Yup.object({
+          petname: Yup.string()
+            .max(20, "Pet name must be 20 characters or less")
+            .required("Required"),
+          bday: Yup.date()
+            .min(new Date("1970-01-01"), "Pet birday can't go below 1970")
+            .max(new Date(), "Pet birthday can't go over current date")
+            .required("Required"),
+          breed: Yup.string()
+            .oneOf(breedsList, "Invalid Pet Type")
+            .required("Required"),
+          vetsInfo: Yup.object({
+            vetsName: Yup.string().max(
+              30,
+              "Pet name must be 30 characters or less"
+            ),
+            vetsPhone: Yup.string().matches(
+              phoneRegExp,
+              "invalid phone number"
+            ),
+            vetsEmail: Yup.string().email("invalid email"),
+            vetsUrl: Yup.string().url("Invalid url syntax"),
+          }),
+        })}
+        onSubmit={(values) => {
+          dispatch(
+            petProfileAdded(
+              values.petname,
+              values.bday,
+              values.sex,
+              values.breed,
+              values.vetsInfo
+            )
+          );
+          navigate("/");
+        }}
+      >
+        {(formik) => (
+          <Form className="addPetForm" onSubmit={formik.handleSubmit}>
+            <h1>Add New Pet</h1>
+            <MyTextInput label="Name" name="petname" />
+            <MyOtherInput
+              label="Birthday"
+              name="bday"
+              type="date"
+              min="1970-01-01"
+              max={new Date().toISOString().substring(0, 10)}
+            ></MyOtherInput>
+            <label>Sex: </label>
+            <div className="petSex-radio">
+              <label>
+                <Field type="radio" id="Male" name="sex" value="Male" />
+                Male
+              </label>
+              <label>
+                <Field type="radio" id="female" name="sex" value="Female" />
+                Female
+              </label>
+            </div>
+            <MySelection label="Breed" name="breed">
+              <option value="">Choose A Breed</option>
+              {renderBreedsList}
+            </MySelection>
+            <label>Vets Information: </label>
+            <MyTextInput
+              label="Vets Name"
+              id="vetsName"
+              name="vetsInfo.vetsName"
+            />
+            <MyOtherInput
+              label="Vets Phone Number"
+              id="vetsPhone"
+              name="vetsInfo.vetsPhone"
+              type="tel"
+              placeholder="0000000000"
+            />
+            <MyOtherInput
+              label="Vets Email"
+              id="vetsEmail"
+              name="vetsInfo.vetsEmail"
+              type="email"
+            />
+            <MyOtherInput
+              label="Vets Website Url"
+              id="vetsUrl"
+              name="vetsInfo.vetsUrl"
+              type="url"
+              placeholder="https://example.com"
+              pattern="https://.*"
+            />
+            <button type="submit" className="petProfileSubmitBtn">
+              Save Profile
+            </button>
+          </Form>
+        )}
+      </Formik>
     </section>
   );
 };

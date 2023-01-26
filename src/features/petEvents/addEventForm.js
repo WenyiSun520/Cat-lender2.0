@@ -1,62 +1,18 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Formik, useField, Form } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { petEventAdded } from "./petEventsSlice";
 import { useNavigate } from "react-router-dom";
 import { addDate } from "../../util/checkDateHasEventsMap";
 import { adjustDateSyntax } from "../../util/AdjustDateSyntax";
+import {
+  MyTextInput,
+  MyOtherInput,
+  MySelection,
+  MyTextArea,
+} from "../../formik/formikComponents";
 
-const MyTextInput = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
-  return (
-    <>
-      <label htmlFor={props.id || props.name}>{label + ": "}</label>
-      <input className="text-Input" {...field} {...props} />
-      {meta.touched && meta.error ? (
-        <div className="formikErrorMsg">{meta.error}</div>
-      ) : null}
-    </>
-  );
-};
-
-const MyOtherInput = ({ label, type, ...props }) => {
-  const [field, meta] = useField(props);
-  return (
-    <>
-      <label htmlFor={props.id || props.name}>{label + ": "}</label>
-      <input className="dropdown" type={type} {...field} {...props} />
-      {meta.touched && meta.error ? (
-        <div className="formikErrorMsg">{meta.error}</div>
-      ) : null}
-    </>
-  );
-      }
-
-  const MySelection = ({ label, ...props }) => {
-    const [field, meta] = useField(props);
-    return (
-      <>
-        <label htmlFor={props.id || props.name}>{label + ": "}</label>
-        <select className="dropdown" {...field} {...props}></select>
-        {meta.touched && meta.error ? (
-          <div className="formikErrorMsg">{meta.error}</div>
-        ) : null}
-      </>
-    );
-  };
-const MyTextArea = ({ label, ...props }) => {
-  const [field, meta] = useField(props);
-  return (
-    <>
-      <label htmlFor={props.id || props.name}>{label + ": "}</label>
-      <textarea className="text-Input" {...field} {...props} ></textarea>
-      {meta.touched && meta.error ? (
-        <div className="formikErrorMsg">{meta.error}</div>
-      ) : null}
-    </>
-  );
-};
 
 export const AddEventForm = () => {
   const dispatch = useDispatch();
@@ -91,7 +47,7 @@ export const AddEventForm = () => {
         }}
         validationSchema={Yup.object({
           pet: Yup.string()
-            .oneOf(petsOptionValues, "Invalid Job Type")
+            .oneOf(petsOptionValues, "Invalid Pet")
             .required("Required"),
           title: Yup.string()
             .max(30, "Must be 30 characters or less")
@@ -130,7 +86,6 @@ export const AddEventForm = () => {
             />
             <MyOtherInput label="Start At" name="start_time" type="time" />
             <MyTextArea label="Note" name="note" placeholder={"Notes lengther must less than 150 characters"}/>
- 
             <button className="eventsubmit-btn" type="submit">
               Submit
             </button>

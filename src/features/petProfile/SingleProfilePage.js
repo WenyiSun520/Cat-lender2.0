@@ -1,13 +1,17 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import DisplayEventSyntax from "../../util/DisplayEventsSyntax";
 import {SortEventsFromOld } from '../../util/SortEvents'
 import AgeCalculation from "../../util/AgeCalculater";
 import { imgName } from "../../data/imgName";
+import {petProfileDeleted} from './petProfileSlice';
+import { petEventDeleted } from "../petEvents/petEventsSlice";
+
 
 export const SingleProfile = (props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const urlParams = useParams();
   let profileId = urlParams.profileId;
 
@@ -16,6 +20,15 @@ export const SingleProfile = (props) => {
   );
   if (!singleProfile) {
     navigate("*");
+  }
+
+  const handleProfileDelete= ()=>{
+    dispatch(petProfileDeleted({ profileId: profileId }));
+    navigate('/');
+    //dispatch(petEventDeleted({ profileId: profileId }));
+
+
+
   }
 
   return (
@@ -44,12 +57,14 @@ export const SingleProfile = (props) => {
               target="_blank"
             >
               {singleProfile.vetsInfo.vetsName}
-            </a>,
+            </a>
+            ,
             <a href={"mailto:" + singleProfile.vetsInfo.vetsEmail}>
-              {"  "+singleProfile.vetsInfo.vetsEmail}
-            </a>,
+              {"  " + singleProfile.vetsInfo.vetsEmail}
+            </a>
+            ,
             <a href={"tel:" + singleProfile.vetsInfo.vetsPhone}>
-              {"  "+singleProfile.vetsInfo.vetsPhone}
+              {"  " + singleProfile.vetsInfo.vetsPhone}
             </a>
           </li>
         </ul>
@@ -59,6 +74,9 @@ export const SingleProfile = (props) => {
         >
           Edit Profile
         </Link>
+        <button className="deleteProfileBtn" onClick={handleProfileDelete}>
+          Delete Profile
+        </button>
       </div>
       <div className="all-events">
         <DisplayEvents petName={singleProfile.name} />

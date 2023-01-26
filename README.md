@@ -25,6 +25,7 @@ This project is delicated to assist pets owner manage their furry friends' healt
 ### 01.25.2023
 - Meet a bug saying "ERROR Warning: React has detected a change in the order of Hooks called by petEventsList. This will lead to bugs and errors if not fixed. For more information, read the Rules of Hooks: https://reactjs.org/link/rules-of-hooks"
 - It turns out that I use curly braces instead of angle braces. The function "DisplayEventsSyntax" later on was added a react hook, which can only be use with a angle braces.
+  
 
 ### 01.24.2023
 - use getTime() to compare two date is not wise, there may has some millsecond difference even though their year, month, date are same, and so the results obtained by gettime() would be different.

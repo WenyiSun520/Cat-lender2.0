@@ -38,7 +38,7 @@ const petProfileSlice = createSlice({
         state.push(action.payload);
       },
       //prepare callback function to generate random value
-      prepare(name, bday, sex, breed,vetsInfo) {
+      prepare(name, bday, sex, breed, vetsInfo) {
         return {
           payload: {
             id: nanoid(),
@@ -46,22 +46,33 @@ const petProfileSlice = createSlice({
             bday,
             sex,
             breed,
-            vetsInfo
+            vetsInfo,
           },
         };
       },
     },
-  petProfileUpdated(state, action) {
-    const { id,name, bday, sex, breed } = action.payload;
-    const updatedProfile = state.find(profile =>profile.id ===id);
-    if(updatedProfile){
-      updatedProfile.name = name;
-      updatedProfile.bday = bday;
-      updatedProfile.sex = sex;
-      updatedProfile.breed = breed;
-    }
+    petProfileUpdated(state, action) {
+      const { id, name, bday, sex, breed, vetsInfo } = action.payload;
+      const updatedProfile = state.find((profile) => profile.id === id);
+      if (updatedProfile) {
+        updatedProfile.name = name;
+        updatedProfile.bday = bday;
+        updatedProfile.sex = sex;
+        updatedProfile.breed = breed;
+        updatedProfile.vetsInfo = vetsInfo;
+      }
+    },
+    petProfileDeleted(state, action) {
+      const profileId = action.payload.profileId;
+      for (let i = 0; i < state.length; i++) {
+        if (state[i].id === profileId) {
+          state.splice(i, 1);
+          break;
+        }
+      }
+    },
   },
-}
 });
-export const { petProfileAdded, petProfileUpdated } = petProfileSlice.actions;
+export const { petProfileAdded, petProfileUpdated, petProfileDeleted } =
+  petProfileSlice.actions;
 export default petProfileSlice.reducer;

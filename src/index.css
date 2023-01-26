@@ -112,15 +112,21 @@ nav section h1 {
 .addPetForm, .addEventsForm, .editPetForm {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   min-width: max-content;
   padding: 10px;
   background-color: #faebcd;
   border-radius: 5px;
+  margin-top: 10px;
+}
+
+.formikErrorMsg {
+  color:red
 }
 
 
 .addEventsForm {
-  max-width:max-content;
+  max-width: max-content;
 }
 
 .addEventsForm, .editPetForm {
@@ -239,6 +245,7 @@ nav section h1 {
   border-radius: 10px;
   margin-top: 20px;
   padding: 5px;
+  width:inherit;
 }
 
 .profile .img-profile {
