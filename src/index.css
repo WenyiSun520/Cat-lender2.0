@@ -121,7 +121,7 @@ nav section h1 {
 }
 
 .formikErrorMsg {
-  color:red
+  color: red
 }
 
 
@@ -245,7 +245,7 @@ nav section h1 {
   border-radius: 10px;
   margin-top: 20px;
   padding: 5px;
-  width:inherit;
+  width: inherit;
 }
 
 .profile .img-profile {
@@ -262,7 +262,8 @@ nav section h1 {
   font-size: 36px;
 }
 
-.editProfileBtn {
+.editProfileBtn, .deleteProfileBtn {
+  display: block;
   height: fit-content;
   float: left;
   border: none;
@@ -270,4 +271,10 @@ nav section h1 {
   padding: 5px;
   margin-top: 10px;
   background-color: #f7c873;
+  text-decoration: none;
+  color: black
+}
+
+.deleteProfileBtn:hover{
+  color:blue
 }

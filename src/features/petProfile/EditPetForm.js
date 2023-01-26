@@ -23,11 +23,15 @@ export const EditPetForm = () => {
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const renderBreedsList = breedsList.map((breed) => (
-    <option key={breed} value={breed}>
-      {breed}
-    </option>
-  ));
+  let allProfileId = [];
+  const renderBreedsList = breedsList.map((breed) => {
+    allProfileId.push(breed.id);
+    return (
+      <option key={breed} value={breed}>
+        {breed}
+      </option>
+    );
+  });
   return (
     <section className="addpet-section">
       <Formik
@@ -46,6 +50,11 @@ export const EditPetForm = () => {
         validationSchema={Yup.object({
           name: Yup.string()
             .max(20, "Pet name must be 20 characters or less")
+            .test(
+              "has-name",
+              "the name has been taken, try another one",
+              (petname) => !allProfileId.includes(petname)
+            )
             .required("Required"),
           bday: Yup.date()
             .min(new Date("1970-01-01"), "Pet birday can't go below 1970")
@@ -81,10 +90,10 @@ export const EditPetForm = () => {
             petProfileUpdated({
               id: profileId,
               name: values.name,
-              bday:values.bday,
-              sex:values.sex,
-              breed:values.breed,
-              vetsInfo: values.vetsInfo
+              bday: values.bday,
+              sex: values.sex,
+              breed: values.breed,
+              vetsInfo: values.vetsInfo,
             })
           );
 

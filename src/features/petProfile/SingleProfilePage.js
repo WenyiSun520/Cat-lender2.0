@@ -2,12 +2,12 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import DisplayEventSyntax from "../../util/DisplayEventsSyntax";
-import {SortEventsFromOld } from '../../util/SortEvents'
+import { SortEventsFromOld } from "../../util/SortEvents";
 import AgeCalculation from "../../util/AgeCalculater";
 import { imgName } from "../../data/imgName";
-import {petProfileDeleted} from './petProfileSlice';
-import { petEventDeleted } from "../petEvents/petEventsSlice";
-
+import { petProfileDeleted } from "./petProfileSlice";
+import { petEventDeletedByPet } from "../petEvents/petEventsSlice";
+import { mutiEventsDateDeleted } from "../petEvents/petEventsDateSlice";
 
 export const SingleProfile = (props) => {
   const navigate = useNavigate();
@@ -18,18 +18,21 @@ export const SingleProfile = (props) => {
   const singleProfile = useSelector((state) =>
     state.petsProfile.find((profile) => profile.id === profileId)
   );
+
+  const eventsForOne = useSelector((state) =>
+    state.petsEvent.filter((event) => event.pets === profileId)
+  );
+
   if (!singleProfile) {
     navigate("*");
   }
 
-  const handleProfileDelete= ()=>{
+  const handleProfileDelete = () => {
     dispatch(petProfileDeleted({ profileId: profileId }));
-    navigate('/');
-    //dispatch(petEventDeleted({ profileId: profileId }));
-
-
-
-  }
+    dispatch(mutiEventsDateDeleted({ events: eventsForOne }));
+    dispatch(petEventDeletedByPet({ petsName: singleProfile.name }));
+    navigate("/");
+  };
 
   return (
     <section className="singleProfile">
@@ -68,6 +71,7 @@ export const SingleProfile = (props) => {
             </a>
           </li>
         </ul>
+
         <Link
           to={`/editPetForm/${singleProfile.id}`}
           className="editProfileBtn"
@@ -78,6 +82,7 @@ export const SingleProfile = (props) => {
           Delete Profile
         </button>
       </div>
+
       <div className="all-events">
         <DisplayEvents petName={singleProfile.name} />
       </div>

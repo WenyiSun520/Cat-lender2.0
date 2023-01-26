@@ -1,10 +1,11 @@
 import React from "react";
+import {nanoid} from '@reduxjs/toolkit'
 import { useSelector, useDispatch } from "react-redux";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { petEventAdded } from "./petEventsSlice";
+import { eventsDateUpdated } from "./petEventsDateSlice";
 import { useNavigate } from "react-router-dom";
-import { addDate } from "../../util/checkDateHasEventsMap";
 import { adjustDateSyntax } from "../../util/AdjustDateSyntax";
 import {
   MyTextInput,
@@ -56,15 +57,22 @@ export const AddEventForm = () => {
           note: Yup.string().max(300, "Must be 150 characters or less"),
         })}
         onSubmit={(values) => {
-          addDate(values.date); // add date to dateHasEventsMap
+          let id = nanoid();
           dispatch(
             petEventAdded(
+              id,
               values.pet,
               values.title,
               values.date,
               values.start_time,
               values.note
             )
+          );
+          dispatch(
+            eventsDateUpdated({
+              date: values.date,
+              eventId: id
+            })
           );
           navigate("/calender");
         }}

@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { petEventDeleted } from "../features/petEvents/petEventsSlice";
-import { deleteDate } from "./checkDateHasEventsMap";
-
+import { petEventDeletedById } from "../features/petEvents/petEventsSlice";
+import { eventsDateDeleted } from "../features/petEvents/petEventsDateSlice";
 export default function DisplayEventSyntax(props) {
   let event = props.event;
   const dispatch = useDispatch();
   const handleEventDelete = () => {
-    dispatch(petEventDeleted({ eventId: event.id }));
-    deleteDate(event.date); //delete the date from dateHasEventsMap
-  };;
+    dispatch(petEventDeletedById({ eventId: event.id }));
+    dispatch(eventsDateDeleted({ date: event.date, eventId: event.id }));
+  };
   return (
     <div className="events" key={event.id}>
       <h3>
@@ -23,14 +22,10 @@ export default function DisplayEventSyntax(props) {
         <Link className="editEventsLink" to={`/editEventForm/${event.id}`}>
           Edit Event
         </Link>
-        <button
-          className="deleteEventBtn"
-          onClick={handleEventDelete}
-        >
+        <button className="deleteEventBtn" onClick={handleEventDelete}>
           Delete
         </button>
       </div>
     </div>
   );
 }
-

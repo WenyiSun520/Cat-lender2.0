@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./calender.css";
-import { hasEventsDateMap } from "../../data/dateHasEvents";
 import {
   faArrowAltCircleLeft,
   faArrowAltCircleRight,
 } from "@fortawesome/free-regular-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { PetEventsList, RenderAllPetEvent } from "./petEventsList.js";
-import {adjustDateSyntax} from '../../util/AdjustDateSyntax'
+import { adjustDateSyntax } from "../../util/AdjustDateSyntax";
+import { useSelector } from "react-redux";
 
 const Month = [
   "January",
@@ -33,13 +33,11 @@ export default function Calender() {
   );
   const [days, setDays] = useState(DisplayCalender());
   const [renderedDate, setrenderedDate] = useState(initialDate);
-  // console.log("renderedDate is: " + renderedDate);
+  const datesHasEvents = useSelector((state) => state.petsEventDate.map(e => (e.date)))
 
   const datePicker = (e) => {
-    // console.log("im in datePicker")
     let list = e.target.classList;
     let date = list[0];
-    // console.log(date);
     setrenderedDate(date);
   };
 
@@ -53,7 +51,7 @@ export default function Calender() {
           onClick={datePicker}
         >
           {obj.day}
-          {hasEventsDateMap.has(date) ? (
+          {datesHasEvents.includes(date) ? (
             <i className="fa-solid fa-cat" style={{ float: "right" }}></i>
           ) : (
             ""
@@ -64,7 +62,7 @@ export default function Calender() {
       return (
         <div className={`${date} add-events`} key={date} onClick={datePicker}>
           {obj.day}
-          {hasEventsDateMap.has(date) ? (
+          {datesHasEvents.includes(date) ? (
             <i className="fa-solid fa-cat" style={{ float: "right" }}></i>
           ) : (
             ""
@@ -187,5 +185,3 @@ function DisplayCalender() {
   }
   return days;
 }
-
-

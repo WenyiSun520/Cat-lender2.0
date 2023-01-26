@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { petEventUpdated } from "./petEventsSlice";
+import { eventsDateUpdated, eventsDateDeleted } from "./petEventsDateSlice";
 import { useNavigate, useParams } from "react-router-dom";
-import { updateDate } from "../../util/checkDateHasEventsMap";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import {
@@ -23,15 +23,15 @@ export const EditEventForm = () => {
   );
 
   const petsProfiles = useSelector((state) => state.petsProfile);
- const petsOptionValues = [];
- const petsOptions = petsProfiles.map((pet) => {
-   petsOptionValues.push(pet.name);
-   return (
-     <option id={pet.id} key={pet.id} value={pet.name}>
-       {pet.name}
-     </option>
-   );
- });
+  const petsOptionValues = [];
+  const petsOptions = petsProfiles.map((pet) => {
+    petsOptionValues.push(pet.name);
+    return (
+      <option id={pet.id} key={pet.id} value={pet.name}>
+        {pet.name}
+      </option>
+    );
+  });
 
   return (
     <section className="addEventSection">
@@ -54,7 +54,6 @@ export const EditEventForm = () => {
           note: Yup.string().max(300, "Must be 150 characters or less"),
         })}
         onSubmit={(values) => {
-          updateDate(singleEvent.date, values.date); // update date to dateHasEventsMap
           dispatch(
             petEventUpdated({
               id: singleEvent.id,
@@ -65,6 +64,20 @@ export const EditEventForm = () => {
               description: values.note,
             })
           );
+          if (singleEvent.date !== values.date) {
+            dispatch(
+              eventsDateDeleted({
+                date: singleEvent.date,
+                eventId: singleEvent.id,
+              })
+            );
+            dispatch(
+              eventsDateUpdated({
+                date: values.date,
+                eventId: singleEvent.id,
+              })
+            );
+          }
           navigate("/calender");
         }}
       >

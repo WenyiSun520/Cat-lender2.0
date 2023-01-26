@@ -17,11 +17,16 @@ const phoneRegExp =
 export const AddPetForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const renderBreedsList = breedsList.map((breed) => (
-    <option key={breed} value={breed}>
-      {breed}
-    </option>
-  ));
+  let allProfileId = [];
+  const renderBreedsList = breedsList.map((breed) => {
+    allProfileId.push(breed.id);
+    return (
+      <option key={breed} value={breed}>
+        {breed}
+      </option>
+    );
+  });
+
   return (
     <section className="addpet-section">
       <Formik
@@ -40,6 +45,11 @@ export const AddPetForm = () => {
         validationSchema={Yup.object({
           petname: Yup.string()
             .max(20, "Pet name must be 20 characters or less")
+            .test(
+              "has-name",
+              "the name has been taken, try another one",
+              (petname) => !allProfileId.includes(petname)
+            )
             .required("Required"),
           bday: Yup.date()
             .min(new Date("1970-01-01"), "Pet birday can't go below 1970")

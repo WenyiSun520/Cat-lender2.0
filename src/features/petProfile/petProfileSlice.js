@@ -1,8 +1,8 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createSlice} from "@reduxjs/toolkit";
 
 const initialState = [
   {
-    id: "1",
+    id: "eggy",
     name: "eggy",
     bday: "2021-09-01",
     sex: "male",
@@ -15,7 +15,7 @@ const initialState = [
     },
   },
   {
-    id: "2",
+    id: "snappy",
     name: "snappy",
     bday: "2021-11-21",
     sex: "male",
@@ -41,7 +41,7 @@ const petProfileSlice = createSlice({
       prepare(name, bday, sex, breed, vetsInfo) {
         return {
           payload: {
-            id: nanoid(),
+            id: name,
             name,
             bday,
             sex,

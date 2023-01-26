@@ -1,10 +1,10 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createSlice} from "@reduxjs/toolkit";
 const initialState = [
   {
     id: "1",
     pets: "snappy",
     title: "de-worm",
-    date: "2023-01-23",
+    date: "2023-01-24",
     start_time: "13:00",
     description: "revolution plus deworm is the best",
   },
@@ -52,10 +52,10 @@ const petEventsSlice = createSlice({
         state.push(action.payload);
       },
       //prepare callback function to generate random value
-      prepare(pets, title, date, start_time, description) {
+      prepare(id, pets, title, date, start_time, description) {
         return {
           payload: {
-            id: nanoid(),
+            id,
             pets,
             title,
             date,
@@ -84,13 +84,22 @@ const petEventsSlice = createSlice({
         updatedEvent[i].pets = updatedName;
       }
     },
-    petEventDeleted(state, action) {
+    petEventDeletedById(state, action) {
       const eventId = action.payload.eventId;
-      // state = state.filter((event)=> event.id !== eventId) 
+      // state = state.filter((event)=> event.id !== eventId)
       for (let i = 0; i < state.length; i++) {
         if (state[i].id === eventId) {
           state.splice(i, 1);
           break;
+        }
+      }
+    },
+    petEventDeletedByPet(state, action) {
+      const petname = action.payload.petsName;
+      for (let i = 0; i < state.length; i++) {
+        if (state[i].pets === petname) {
+          state.splice(i, 1);
+          i--;
         }
       }
     },
@@ -101,6 +110,7 @@ export const {
   petEventAdded,
   petEventUpdated,
   petEventNameUpdated,
-  petEventDeleted,
+  petEventDeletedById,
+  petEventDeletedByPet,
 } = petEventsSlice.actions;
 export default petEventsSlice.reducer;
