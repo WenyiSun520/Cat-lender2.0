@@ -21,7 +21,7 @@ export const Navbar= ()=>{
           </div>
           <div className="nav-item">
             <Link to="/calender" className="nav-link nav-item">
-              Records
+              Records(pending)
             </Link>
           </div>
         </nav>
