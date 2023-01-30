@@ -49,7 +49,7 @@ export default function Calender() {
           key={date}
           onClick={datePicker}
         >
-          {obj.day}
+          <div className="day-number">{obj.day}</div>
           {datesHasEvents.includes(date) ? (
             <i
               className={` ${date} fa-solid fa-cat`}
@@ -64,7 +64,7 @@ export default function Calender() {
     } else {
       return (
         <div className={`${date} add-events`} key={date} onClick={datePicker}>
-          {obj.day}
+          <div className="day-number">{obj.day}</div>
           {datesHasEvents.includes(date) ? (
             <i
               className={`${date} fa-solid fa-cat `}

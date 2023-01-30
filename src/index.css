@@ -8,12 +8,17 @@
   padding: 0;
 }
 
+.root {
+  padding: 0;
+}
+
 /* CSS for NavBar */
 .navbar-section {
   background-color: #f7c873;
 }
 
 .nav-link {
+  color: black;
   transition: 0.3s ease-in-out;
 }
 
@@ -51,12 +56,20 @@ nav section h1 {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
   padding: 10px;
   margin: 5px;
   border-radius: 15px;
   box-shadow: 5px 10px 20px rgba(0, 0, 0, .5);
-  transition: 0.5s;
+  margin: 20px;
+  transition: transform 0.5s;
 }
+
+.petProfile:hover {
+  transform: translateY(-10px);
+  cursor: pointer;
+}
+
 
 .singleProfileLink {
   text-decoration: none;
@@ -67,18 +80,6 @@ nav section h1 {
   color: black;
 }
 
-
-.petProfile {
-  height: max-content;
-  width: max-content;
-  margin: 20px;
-  transition: transform 0.5s;
-}
-
-.petProfile:hover {
-  transform: translateY(-10px);
-  cursor: pointer;
-}
 
 .petProfile ul .singleProfileBtn {
   color: black;
@@ -96,6 +97,10 @@ nav section h1 {
 .petProfile ul .singleProfileBtn:hover {
   box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
   transform: scale(1.2, 1.2)
+}
+
+.petProfile ul {
+  list-style-type: none;
 }
 
 .add-profile {
@@ -123,12 +128,9 @@ nav section h1 {
   border-radius: 10px;
   margin-top: 20px;
   padding: 5px;
-  width: inherit;
+  margin: 10px;
 }
 
-.profile .img-profile {
-  display: block;
-}
 
 .profile ul {
   display: block;
@@ -161,6 +163,7 @@ nav section h1 {
 }
 
 .img-profile {
+  display: block;
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -170,11 +173,6 @@ nav section h1 {
   width: 250px;
   height: 250px;
   border-radius: 50%;
-}
-
-
-.petProfile ul {
-  list-style-type: none;
 }
 
 .all-events {
@@ -251,8 +249,8 @@ nav section h1 {
   flex-direction: column;
   flex-wrap: wrap;
   margin-top: 10px;
-  width: 50%;
   border-radius: 10px;
+  width: fit-content;
 }
 
 
@@ -262,9 +260,10 @@ nav section h1 {
   flex-direction: column;
   justify-content: flex-start;
   border-radius: 10px;
-  width: 100%;
-  height: 450px;
-  background-color: #faebcd
+  width: 50vw;
+  height: fit-content;
+  background-color: #faebcd;
+
 }
 
 .calender-container .month {
@@ -302,27 +301,46 @@ nav section h1 {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: center
+  justify-content: center;
 }
 
-.calender-container .days div {
+.calender-container .days .add-events {
   display: flex;
+  flex-direction: row;
+  justify-content: center;
   background-color: #f7c873;
-  border-radius: 50%;
+  border-radius: 10px;
   width: 13%;
   padding: 8px;
   margin: 2px;
-  justify-content: center;
   transition: background-color 0.2s;
 }
 
-.calender-page .days div:hover:not(.today) {
-  background-color: #faebcd;
+.calender-container .days div i {
+  display: block;
+  float: left;
 
 }
 
-.calender-page .days .today {
-  background-color: orange
+
+.day-number {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #f7c873;
+
+}
+
+.calender-page .days div:hover:not(.today), .calender-page .days div:hover:not(.today) .day-number {
+  background-color: #faebcd;
+}
+
+
+.calender-page .days .today .day-number {
+  background-color: white;
 }
 
 .calender-page .days div .plus {
@@ -409,17 +427,17 @@ nav section h1 {
 /* CSS for forms */
 
 
+
+
 .addPetForm, .addEventsForm, .editPetForm {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  flex-wrap: wrap;
   padding: 10px;
   background-color: #faebcd;
   border-radius: 5px;
   position: relative;
-  margin-top: 20px;
-  width: 500px;
-  left: 30%;
+  margin: 20px;
 }
 
 .formikErrorMsg {
@@ -435,3 +453,15 @@ nav section h1 {
   margin: 5px;
 }
 
+
+@media(max-width:700px) {
+
+
+  .calender-container, .event-card, .singleProfileSection.profile {
+    width: 100%;
+  }
+
+  .calender-page{
+    margin:2%;
+  }
+}

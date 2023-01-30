@@ -14,7 +14,7 @@ import ErrorPage from "./app/errPage";
 
 function App() {
   return (
-    <div className="App container-fluid">
+    <div className="App">
       <Navbar />
       <Routes>
         <Route path="/" element={<PetProfileList />}></Route>
