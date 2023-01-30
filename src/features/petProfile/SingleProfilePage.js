@@ -74,11 +74,14 @@ export const SingleProfile = (props) => {
 
         <Link
           to={`/editPetForm/${singleProfile.id}`}
-          className="editProfileBtn"
+          className="editProfileBtn rippleEffect"
         >
           <span> Edit Profile</span>
         </Link>
-        <button className="deleteProfileBtn" onClick={handleProfileDelete}>
+        <button
+          className="deleteProfileBtn rippleEffect"
+          onClick={handleProfileDelete}
+        >
           <span> Delete Profile</span>
         </button>
       </div>

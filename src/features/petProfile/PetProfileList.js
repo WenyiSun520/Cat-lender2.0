@@ -28,7 +28,7 @@ export const PetProfileList = () => {
           <li>Sex: {pet.sex}</li>
           <li>Breed: {pet.breed}</li>
           <button
-            className="singleProfileBtn"
+            className="singleProfileBtn rippleEffect"
             onClick={() => navigate(`/profiles/${pet.id}`)}
           >
             <span>View Profile</span>

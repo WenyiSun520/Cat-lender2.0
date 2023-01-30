@@ -19,10 +19,16 @@ export default function DisplayEventSyntax(props) {
       </h4>
       <p className="event-content">{event.description}</p>
       <div className="eventBtnMenu">
-        <Link className="editEventsLink" to={`/editEventForm/${event.id}`}>
+        <Link
+          className="editEventsLink rippleEffect"
+          to={`/editEventForm/${event.id}`}
+        >
           <span>Edit Reminder</span>
         </Link>
-        <button className="deleteEventBtn" onClick={handleEventDelete}>
+        <button
+          className="deleteEventBtn rippleEffect"
+          onClick={handleEventDelete}
+        >
           <span>Delete</span>
         </button>
       </div>

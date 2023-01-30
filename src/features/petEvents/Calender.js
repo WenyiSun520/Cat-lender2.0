@@ -130,7 +130,11 @@ export default function Calender() {
             <div>Sat</div>
           </div>
           <div className="days">{displayDays}</div>
-          <button id="addpetsEventBtn" onClick={handleFormClicked}>
+          <button
+            id="addpetsEventBtn"
+            className="rippleEffect"
+            onClick={handleFormClicked}
+          >
             <span>Add Reminder</span>
           </button>
         </div>

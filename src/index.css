@@ -451,7 +451,7 @@ nav section h1 {
   color: red
 }
 
-.eventsubmit-btn {
+.eventsubmit-btn, .petProfileSubmitBtn {
   margin-top: 20px;
   background-color: #ffffff;
   color: #f7c873;
@@ -462,33 +462,18 @@ nav section h1 {
 
 /* CSS for Ripple Effect Btns */
 
-.petProfile ul .singleProfileBtn,
-#addpetsEventBtn,
-.deleteEventBtn,
-.editEventsLink,
-.editProfileBtn,
-.deleteProfileBtn {
+.rippleEffect {
   position: relative;
   overflow: hidden;
 }
 
-.petProfile ul .singleProfileBtn:hover,
-#addpetsEventBtn:hover,
-.deleteEventBtn:hover,
-.editEventsLink:hover,
-.editProfileBtn:hover,
-.deleteProfileBtn:hover {
+.rippleEffect:hover {
   box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
   text-decoration: underline;
   color: #ffffff;
 }
 
-.petProfile ul .singleProfileBtn::before,
-#addpetsEventBtn::before,
-.deleteEventBtn::before,
-.editEventsLink::before,
-.editProfileBtn::before,
-.deleteProfileBtn::before {
+.rippleEffect::before {
   content: "";
   position: absolute;
   left: 100%;
@@ -502,23 +487,15 @@ nav section h1 {
   overflow: hidden;
 }
 
-.petProfile ul .singleProfileBtn:hover::before,
-#addpetsEventBtn:hover::before,
-.deleteEventBtn:hover::before,
-.editEventsLink:hover::before,
-.editProfileBtn:hover::before,
-.deleteProfileBtn:hover::before {
+.rippleEffect:hover::before {
   width: 400px;
   height: 400px;
 }
 
-.petProfile ul .singleProfileBtn span,
-#addpetsEventBtn span,
-.deleteEventBtn span,
-.editEventsLink span,
-.editProfileBtn span, .deleteProfileBtn span {
+.rippleEffect span {
   position: relative;
   z-index: 1;
+
 
 }
 
