@@ -11,24 +11,31 @@ export const PetProfileList = () => {
   const navigate = useNavigate();
   const profiles = useSelector((state) => state.petsProfile);
   const renderedProfiles = profiles.map((pet) => (
-    <div className="petProfile" key={pet.id}>
-      <img
-        className="img-profile"
-        src={
-          imgName.includes(pet.name + ".jpeg")
-            ? `./img/${pet.name}.jpeg`
-            : "./img/cat.jpeg"
-        }
-        alt="sample profile"
-      />
-      <ul>
-        <li>Name:{pet.name}</li>
-        <li>Age: {AgeCalculation(pet.bday)}</li>
-        <li>Sex:{pet.sex}</li>
-        <li>Breed:{pet.breed}</li>
-        <Link to={`/profiles/${pet.id}`}>View Profile</Link>
-      </ul>
-    </div>
+    <Link className="singleProfileLink" to={`/profiles/${pet.id}`} key={pet.id}>
+      <div className="petProfile">
+        <img
+          className="img-profile"
+          src={
+            imgName.includes(pet.name + ".jpeg")
+              ? `./img/${pet.name}.jpeg`
+              : "./img/cat.jpeg"
+          }
+          alt="sample profile"
+        />
+        <ul>
+          <li>Name: {pet.name}</li>
+          <li>Age: {AgeCalculation(pet.bday)}</li>
+          <li>Sex: {pet.sex}</li>
+          <li>Breed: {pet.breed}</li>
+          <button
+            className="singleProfileBtn"
+             onClick={() => navigate(`/profiles/${pet.id}`)}
+          >
+            View Profile
+          </button>
+        </ul>
+      </div>
+    </Link>
   ));
 
   const handleOpenAddPetForm = () => {
@@ -40,12 +47,12 @@ export const PetProfileList = () => {
       <h2>Your Pets</h2>
       <div className="petProfileList">
         {renderedProfiles}
-        <div className="events add-profile" onClick={handleOpenAddPetForm}>
+        <div className="petProfile add-profile" onClick={handleOpenAddPetForm}>
           <FontAwesomeIcon
             className="icon"
             onClick={handleOpenAddPetForm}
             icon={faSquarePlus}
-          />
+          />Add New Pet
         </div>
       </div>
     </section>

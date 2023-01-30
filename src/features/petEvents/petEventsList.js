@@ -40,7 +40,7 @@ export const RenderAllPetEvent = () => {
   ));
 
   return (
-    <div className="reminder all-reminder">
+    <div className="all-reminder">
       <h3>All Upcoming Events:</h3>
       {results}
       <h3>Achieved Events:</h3>

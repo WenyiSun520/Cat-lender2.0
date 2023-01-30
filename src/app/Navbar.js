@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 export const Navbar= ()=>{
     return (
       <section className="navbar-section">
-        <Link to="/" className="nav-link ">
+        <Link to="/" className="nav-link main">
           <h1 className="title">Cat-lender</h1>
         </Link>
         <nav className="nav nav-pills nav-fill">
@@ -20,7 +20,7 @@ export const Navbar= ()=>{
             </Link>
           </div>
           <div className="nav-item">
-            <Link to="/calender" className="nav-link nav-item">
+            <Link to="/records" className="nav-link nav-item">
               Records(pending)
             </Link>
           </div>

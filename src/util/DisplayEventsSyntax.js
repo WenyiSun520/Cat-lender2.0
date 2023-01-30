@@ -10,17 +10,17 @@ export default function DisplayEventSyntax(props) {
     dispatch(eventsDateDeleted({ date: event.date, eventId: event.id }));
   };
   return (
-    <div className="events" key={event.id}>
-      <h3>
+    <div className="event-card" key={event.id}>
+      <h3 className="event-content">
         {event.pets}: {event.title}
       </h3>
-      <h4>
+      <h4 className="event-content">
         Start at: {event.start_time}, {event.date}
       </h4>
-      <p>{event.description}</p>
+      <p className="event-content">{event.description}</p>
       <div className="eventBtnMenu">
         <Link className="editEventsLink" to={`/editEventForm/${event.id}`}>
-          Edit Event
+          Edit Reminder
         </Link>
         <button className="deleteEventBtn" onClick={handleEventDelete}>
           Delete

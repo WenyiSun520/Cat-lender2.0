@@ -35,7 +35,7 @@ export const SingleProfile = (props) => {
   };
 
   return (
-    <section className="singleProfile">
+    <section className="singleProfileSection">
       <div className="profile">
         <img
           className="img-profile"
