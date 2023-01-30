@@ -49,7 +49,9 @@ export default function Calender() {
           key={date}
           onClick={datePicker}
         >
-          <div className="day-number">{obj.day}</div>
+          <div className={`${date} day-number`} onClick={datePicker}>
+            {obj.day}
+          </div>
           {datesHasEvents.includes(date) ? (
             <i
               className={` ${date} fa-solid fa-cat`}
@@ -64,7 +66,9 @@ export default function Calender() {
     } else {
       return (
         <div className={`${date} add-events`} key={date} onClick={datePicker}>
-          <div className="day-number">{obj.day}</div>
+          <div className={`${date} day-number`} onClick={datePicker}>
+            {obj.day}
+          </div>
           {datesHasEvents.includes(date) ? (
             <i
               className={`${date} fa-solid fa-cat `}
@@ -127,7 +131,7 @@ export default function Calender() {
           </div>
           <div className="days">{displayDays}</div>
           <button id="addpetsEventBtn" onClick={handleFormClicked}>
-            Add Reminder
+            <span>Add Reminder</span>
           </button>
         </div>
         <PetEventsList selectedDate={renderedDate} />

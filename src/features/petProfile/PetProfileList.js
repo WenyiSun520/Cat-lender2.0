@@ -29,9 +29,9 @@ export const PetProfileList = () => {
           <li>Breed: {pet.breed}</li>
           <button
             className="singleProfileBtn"
-             onClick={() => navigate(`/profiles/${pet.id}`)}
+            onClick={() => navigate(`/profiles/${pet.id}`)}
           >
-            View Profile
+            <span>View Profile</span>
           </button>
         </ul>
       </div>

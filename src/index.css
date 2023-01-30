@@ -106,14 +106,8 @@ nav section h1 {
   border-radius: 10px;
   border: none;
   box-shadow: 2px 5px 5px rgba(0, 0, 0, .5);
-  transition: transform 0.8s;
   transition: box-shadow 0.2s;
 
-}
-
-.petProfile ul .singleProfileBtn:hover {
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
-  transform: scale(1.2, 1.2)
 }
 
 .petProfile ul {
@@ -170,13 +164,12 @@ nav section h1 {
   background-color: #f7c873;
   text-decoration: none;
   color: black;
-  transition: transform 1s;
+  transition: box-shadow 1s;
 }
 
 .deleteProfileBtn:hover, .editProfileBtn:hover {
   color: black;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
-  transform: scale(1.2, 1.2)
 }
 
 .img-profile {
@@ -220,12 +213,12 @@ nav section h1 {
   background-image: linear-gradient(#faebcd, white)
 }
 
-.event-content:hover {
+/* .event-content:hover {
   display: block;
   padding: 2px;
   border-radius: 10px;
   box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .5);
-}
+} */
 
 .eventBtnMenu {
   display: flex;
@@ -241,14 +234,12 @@ nav section h1 {
   border-radius: 10px;
   border: none;
   box-shadow: 2px 5px 5px rgba(0, 0, 0, .5);
-  transition: transform 0.8s;
   transition: box-shadow 0.2s;
 }
 
 .deleteEventBtn:hover, .editEventsLink:hover {
   color: black;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
-  transform: scale(1.2, 1.2)
 }
 
 /* CSS for Calender Page */
@@ -272,7 +263,7 @@ nav section h1 {
 
 
 .calender-container {
-  /* position: static; */
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -329,15 +320,21 @@ nav section h1 {
   background-color: #f7c873;
   border-radius: 10px;
   width: 13%;
+  height: max-content;
   padding: 8px;
   margin: 2px;
   transition: background-color 0.2s;
 }
 
+.calender-container .days .add-events:hover {
+  color: orange;
+  text-decoration: underline;
+}
+
+
 .calender-container .days div i {
   display: block;
   float: left;
-
 }
 
 
@@ -380,19 +377,11 @@ nav section h1 {
   border: none;
   border-radius: 10px;
   padding: 5px;
-  margin-top: 10px;
+  margin: 10px;
   margin-left: 35%;
   background-color: #f7c873;
   text-decoration: none;
   color: black;
-  transition: transform 1s;
-}
-
-
-#addpetsEventBtn:hover {
-  color: black;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
-  transform: scale(1.2, 1.2)
 }
 
 .icon {
@@ -444,9 +433,6 @@ nav section h1 {
 
 /* CSS for forms */
 
-
-
-
 .addPetForm, .addEventsForm, .editPetForm {
   display: flex;
   flex-direction: column;
@@ -474,6 +460,67 @@ nav section h1 {
   margin: 5px;
 }
 
+/* CSS for Ripple Effect Btns */
+
+.petProfile ul .singleProfileBtn,
+#addpetsEventBtn,
+.deleteEventBtn,
+.editEventsLink,
+.editProfileBtn,
+.deleteProfileBtn {
+  position: relative;
+  overflow: hidden;
+}
+
+.petProfile ul .singleProfileBtn:hover,
+#addpetsEventBtn:hover,
+.deleteEventBtn:hover,
+.editEventsLink:hover,
+.editProfileBtn:hover,
+.deleteProfileBtn:hover {
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, .5);
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+.petProfile ul .singleProfileBtn::before,
+#addpetsEventBtn::before,
+.deleteEventBtn::before,
+.editEventsLink::before,
+.editProfileBtn::before,
+.deleteProfileBtn::before {
+  content: "";
+  position: absolute;
+  left: 100%;
+  right: 0%;
+  transform: translate(-50%, -50%);
+  width: 0px;
+  height: 0px;
+  background-color: orange;
+  border-radius: 50%;
+  transition: width 0.8s, height 0.8s;
+  overflow: hidden;
+}
+
+.petProfile ul .singleProfileBtn:hover::before,
+#addpetsEventBtn:hover::before,
+.deleteEventBtn:hover::before,
+.editEventsLink:hover::before,
+.editProfileBtn:hover::before,
+.deleteProfileBtn:hover::before {
+  width: 400px;
+  height: 400px;
+}
+
+.petProfile ul .singleProfileBtn span,
+#addpetsEventBtn span,
+.deleteEventBtn span,
+.editEventsLink span,
+.editProfileBtn span, .deleteProfileBtn span {
+  position: relative;
+  z-index: 1;
+
+}
 
 @media(max-width:700px) {
 

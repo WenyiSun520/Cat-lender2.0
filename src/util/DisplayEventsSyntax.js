@@ -20,10 +20,10 @@ export default function DisplayEventSyntax(props) {
       <p className="event-content">{event.description}</p>
       <div className="eventBtnMenu">
         <Link className="editEventsLink" to={`/editEventForm/${event.id}`}>
-          Edit Reminder
+          <span>Edit Reminder</span>
         </Link>
         <button className="deleteEventBtn" onClick={handleEventDelete}>
-          Delete
+          <span>Delete</span>
         </button>
       </div>
     </div>

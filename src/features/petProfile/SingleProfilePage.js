@@ -76,10 +76,10 @@ export const SingleProfile = (props) => {
           to={`/editPetForm/${singleProfile.id}`}
           className="editProfileBtn"
         >
-          Edit Profile
+          <span> Edit Profile</span>
         </Link>
         <button className="deleteProfileBtn" onClick={handleProfileDelete}>
-          Delete Profile
+          <span> Delete Profile</span>
         </button>
       </div>
 

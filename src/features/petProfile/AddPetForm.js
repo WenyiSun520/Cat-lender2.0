@@ -138,7 +138,7 @@ export const AddPetForm = () => {
               pattern="https://.*"
             />
             <button type="submit" className="petProfileSubmitBtn">
-              Save Profile
+              <span>Save Profile</span>
             </button>
           </Form>
         )}
