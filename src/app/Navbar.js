@@ -17,19 +17,43 @@ export const Navbar = () => {
     <section className="navbar-section">
       <div className="title">
         <Link to="/" className="nav-link main">
-          <h1 className="title">Cat-lender</h1>
+          <h1 className="h1Title">
+            Cat-lender
+            <i className="fa-solid fa-paw"></i>
+          </h1>
+          <p> A caring housekeeper for Your furry fiends' health </p>
         </Link>
         <div className="menu" onClick={toggleMenu}>
           Menu
         </div>
+        <a
+          href="https://github.com/WenyiSun520/cat-lender2.0"
+          className="about"
+          rel="noreferrer"
+          target="_blank"
+        >
+          About This Project
+          <i className="fa-solid fa-person-running"></i>
+        </a>
       </div>
       <nav className="nav nav-pills nav-fill">
         <div className="nav-item">
+          <img
+            className="nav-cat"
+            src="./img/orgCat-1.jpeg"
+            alt="a cartoon orange cat"
+          ></img>
+
           <Link to="/" className="nav-link">
             Pets Profiles
           </Link>
         </div>
         <div className="nav-item">
+          <img
+            className="nav-cat"
+            src="./img/orgCat-2.jpeg"
+            alt="a cartoon orange cat"
+          ></img>
           <Link to="/calender" className="nav-link nav-item">
             Pets Calender
           </Link>

@@ -15,12 +15,74 @@
 /* CSS for NavBar */
 .navbar-section {
   background-color: #f7c873;
+
 }
 
 .navbar-section .title {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding-bottom: 5%;
+  background-image: linear-gradient(orange, #f7c873);
+}
+
+.navbar-section .title .about {
+  text-decoration: none;
+  color: black;
+  margin:10px;
+  padding:2px;
+  height: fit-content;
+}
+
+.navbar-section .title .about:hover {
+  border-radius: 5px;;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, .3);
+}
+
+
+.fa-solid.fa-paw {
+  margin-left: 5px;
+  transform: rotate(20deg);
+}
+
+
+.nav-link.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+}
+
+
+.h1Title, .nav-link.main p {
+  padding: 0;
+  margin: 0;
+}
+
+.nav-item {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.nav-cat {
+  visibility: hidden;
+  position: absolute;
+  left: 20%;
+  bottom: -100%;
+  width: 200px;
+  height: 200px;
+  z-index: 0;
+  transition: transform 0.8s;
+}
+
+.nav-item:hover .nav-cat {
+  visibility: visible;
+  z-index: 0;
+  transform: translateY(-12%);
+
 }
 
 
@@ -32,6 +94,8 @@
 .nav-link {
   color: black;
   transition: 0.3s ease-in-out;
+  z-index: 1;
+
 }
 
 .nav-link.main {
@@ -54,11 +118,6 @@
   background-color: #faebcd;
 }
 
-nav section h1 {
-  font-family: 'Oleo Script', cursive;
-  size: 20px;
-
-}
 
 /* CSS for ProfileList Page */
 
@@ -398,6 +457,12 @@ nav section h1 {
   padding-top: 10px;
 }
 
+.all-reminder {
+  height: 700px;
+  overflow-y: scroll;
+}
+
+
 .all-reminder .event-card {
   flex: 1.5;
   max-height: 4.5em;
@@ -499,8 +564,18 @@ nav section h1 {
 
 }
 
-@media(max-width:700px) {
+@media(min-width:700px) {
+  .nav-cat {
+    display: block;
+  }
+}
 
+
+
+@media(max-width:700px) {
+  .nav-cat {
+    display: none;
+  }
 
   .calender-container, .event-card, .singleProfileSection.profile {
     width: 100%;
@@ -511,7 +586,23 @@ nav section h1 {
   }
 }
 
+@media(min-width:400px) {
+  .navbar-section .menu {
+    display: none;
+  }
+
+  .navbar-section nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}
+
+
+
 @media(max-width:400px) {
+
+
 
   .addPetForm, .addEventsForm, .editPetForm {
     width: 100%;
