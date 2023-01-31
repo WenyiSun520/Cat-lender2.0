@@ -1,5 +1,5 @@
 # Cat-lender2.0
-Cat-lender2.0 is a web react-redux web application delicated to assist pets owner manage their furry friends' health condition, schedules, and daily routine.
+Cat-lender2.0 is a web react-redux web application dedicated to assisting pets owner in managing their furry friends' health conditions, schedules, and daily routines.
 - Firebase: https://cat-lender.web.app/
 
 ## Major JS Libraries
